@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ห้องสมุดดิจิทัล (E-Library) | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Header */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: transform 0.2s; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* E-Library Hero */
+        .library-hero {
+            background-color: var(--primary-color);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.85), rgba(18, 56, 128, 0.95)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .library-hero h1 { font-size: 3.2rem; margin-bottom: 15px; color: var(--secondary-color); }
+        .library-hero p { font-size: 1.1rem; color: #E0E6ED; max-width: 600px; margin: 0 auto 40px; }
+        
+        /* Advanced Search Bar */
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            display: flex;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .search-select {
+            border: none;
+            background: transparent;
+            padding: 10px 20px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #555;
+            border-right: 1px solid #eee;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            border: none;
+            padding: 15px 20px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 35px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .search-btn:hover { background: #0c2657; }
+
+        /* Main Content */
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .section-title { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 2px solid #eaeaea; padding-bottom: 15px; }
+        .section-title h2 { color: var(--primary-color); font-size: 1.8rem; }
+        .view-all { color: #666; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+        .view-all:hover { color: var(--secondary-color); }
+
+        /* Resource Categories (Blurbs) */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: -30px; /* Overlap Hero */
+            position: relative;
+            z-index: 10;
+            margin-bottom: 60px;
+        }
+        
+        .cat-card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cat-card:hover { transform: translateY(-8px); box-shadow: var(--hover-shadow); border-bottom: 3px solid var(--secondary-color); }
+        .cat-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .cat-title { color: var(--primary-color); font-weight: 600; font-size: 1.1rem; }
+
+        /* Books Grid (E-Books & Magazines) */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .book-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
+
+        .book-cover {
+            width: 100%;
+            aspect-ratio: 2/3; /* สัดส่วนปกหนังสือ */
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .book-category { font-size: 0.75rem; color: #888; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .book-title { color: var(--primary-color); font-weight: 600; font-size: 1rem; line-height: 1.3; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .book-author { color: #666; font-size: 0.85rem; margin-bottom: 15px; flex-grow: 1; }
+        
+        .read-btn {
+            display: block;
+            text-align: center;
+            background: var(--bg-color);
+            color: var(--primary-color);
+            padding: 8px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .book-card:hover .read-btn { background: var(--secondary-color); color: var(--primary-color); }
+
+        /* External Databases */
+        .db-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .db-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border: 1px solid #eaeaea;
+            transition: border-color 0.3s;
+        }
+        .db-card:hover { border-color: var(--primary-color); }
+        .db-logo { width: 80px; height: 80px; background: var(--bg-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-right: 20px; flex-shrink: 0; }
+        .db-info h3 { color: var(--primary-color); font-size: 1.2rem; margin-bottom: 5px; }
+        .db-info p { color: #666; font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .books-grid { grid-template-columns: repeat(4, 1fr); }
+            .categories-grid { grid-template-columns: repeat(2, 1fr); margin-top: 30px; }
+        }
+        @media (max-width: 768px) {
+            .books-grid { grid-template-columns: repeat(2, 1fr); }
+            .db-grid { grid-template-columns: 1fr; }
+            .search-container { flex-direction: column; border-radius: 12px; padding: 15px; gap: 10px; background: transparent; box-shadow: none; }
+            .search-select, .search-input, .search-btn { border-radius: 8px; border: none; padding: 12px; width: 100%; background: white; }
+            .search-select { border-right: none; }
+            .library-hero h1 { font-size: 2.5rem; }
+        }
+
+        /* Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 60px;}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero & Search Section -->
+    <section class="library-hero">
+        <h1>ห้องสมุดดิจิทัล (SBW E-Library)</h1>
+        <p>สืบค้นหนังสืออิเล็กทรอนิกส์ คลังข้อสอบ วารสารวิชาการ และสื่อการเรียนรู้ออนไลน์ ได้ทุกที่ทุกเวลา</p>
+        
+        <form class="search-container" action="#" method="GET">
+            <select class="search-select">
+                <option value="all">ทั้งหมด</option>
+                <option value="ebook">E-Books</option>
+                <option value="exam">คลังข้อสอบเก่า</option>
+                <option value="video">สื่อ VOD</option>
+            </select>
+            <input type="text" class="search-input" placeholder="ค้นหาชื่อหนังสือ, ผู้แต่ง, หรือคำสำคัญ..." required>
+            <button type="submit" class="search-btn">ค้นหา</button>
+        </form>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Resource Categories (Overlap Design) -->
+        <div class="categories-grid">
+            <a href="#" class="cat-card">
+                <span class="cat-icon">📱</span>
+                <span class="cat-title">E-Books & วารสาร</span>
+            </a>
+            <a href="#" class="cat-card">
+                <span class="cat-icon">📝</span>
+                <span class="cat-title">คลังข้อสอบเก่า (O-NET/A-Level)</span>
+            </a>
+            <a href="#" class="cat-card">
+                <span class="cat-icon">🎬</span>
+                <span class="cat-title">คลังสื่อวีดิทัศน์ (VOD)</span>
+            </a>
+            <a href="#" class="cat-card">
+                <span class="cat-icon">🔬</span>
+                <span class="cat-title">โครงงานและงานวิจัยนักเรียน</span>
+            </a>
+        </div>
+
+        <!-- New Arrivals (Books Grid) -->
+        <div class="section-title">
+            <h2>หนังสือมาใหม่ (New Arrivals)</h2>
+            <a href="#" class="view-all">ดูทั้งหมด →</a>
+        </div>
+        
+        <div class="books-grid">
+            <!-- Book 1 -->
+            <div class="book-card">
+                <img src="https://via.placeholder.com/300x450?text=Python+101" alt="Book Cover" class="book-cover">
+                <div class="book-category">Technology</div>
+                <div class="book-title">Python 101: พื้นฐานการเขียนโปรแกรมสำหรับผู้เริ่มต้น</div>
+                <div class="book-author">กลุ่มสาระฯ วิทยาศาสตร์</div>
+                <a href="#" class="read-btn">อ่านออนไลน์</a>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <img src="https://via.placeholder.com/300x450?text=Biology" alt="Book Cover" class="book-cover">
+                <div class="book-category">Science</div>
+                <div class="book-title">เจาะลึกชีววิทยา ม.ปลาย ฉบับเตรียมสอบสมบูรณ์แบบ</div>
+                <div class="book-author">สถาบันกวดวิชาชั้นนำ</div>
+                <a href="#" class="read-btn">อ่านออนไลน์</a>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="book-card">
+                <img src="https://via.placeholder.com/300x450?text=Thai+History" alt="Book Cover" class="book-cover">
+                <div class="book-category">Social Studies</div>
+                <div class="book-title">ประวัติศาสตร์ชาติไทย: ยุคสุโขทัยถึงรัตนโกสินทร์</div>
+                <div class="book-author">กระทรวงศึกษาธิการ</div>
+                <a href="#" class="read-btn">อ่านออนไลน์</a>
+            </div>
+
+            <!-- Book 4 -->
+            <div class="book-card">
+                <img src="https://via.placeholder.com/300x450?text=IELTS+Vocab" alt="Book Cover" class="book-cover">
+                <div class="book-category">Languages</div>
+                <div class="book-title">Mastering IELTS Vocabulary 5000 Words</div>
+                <div class="book-author">หมวดภาษาต่างประเทศ</div>
+                <a href="#" class="read-btn">อ่านออนไลน์</a>
+            </div>
+
+            <!-- Book 5 -->
+            <div class="book-card">
+                <img src="https://via.placeholder.com/300x450?text=Financial+Lite" alt="Book Cover" class="book-cover">
+                <div class="book-category">Economics</div>
+                <div class="book-title">ความฉลาดทางการเงิน (Financial Literacy) สำหรับวัยรุ่น</div>
+                <div class="book-author">สมาคมส่งเสริมผู้ลงทุนไทย</div>
+                <a href="#" class="read-btn">อ่านออนไลน์</a>
+            </div>
+        </div>
+
+        <!-- External Databases & Partners -->
+        <div class="section-title">
+            <h2>ฐานข้อมูลและแหล่งเรียนรู้ภายนอก</h2>
+        </div>
+        
+        <div class="db-grid">
+            <a href="#" class="db-card">
+                <div class="db-logo">🌐</div>
+                <div class="db-info">
+                    <h3>OBEC Content Center</h3>
+                    <p>ศูนย์กลางคลังเนื้อหาการศึกษาทางอิเล็กทรอนิกส์ (สพฐ.) รวบรวมแอปพลิเคชัน หนังสืออิเล็กทรอนิกส์ และสื่อมัลติมีเดีย</p>
+                </div>
+            </a>
+            <a href="#" class="db-card">
+                <div class="db-logo">📚</div>
+                <div class="db-info">
+                    <h3>ThaiJO (Thai Journals Online)</h3>
+                    <p>ระบบฐานข้อมูลวารสารอิเล็กทรอนิกส์กลางของประเทศไทย แหล่งค้นคว้าบทความทางวิชาการและงานวิจัยที่น่าเชื่อถือ</p>
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

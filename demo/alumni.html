@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมาคมศิษย์เก่าและทำเนียบศิษย์เก่าดีเด่น | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --gold-gradient: linear-gradient(135deg, #FFC20E 0%, #D49A00 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Header */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: transform 0.2s; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* Alumni Hero */
+        .alumni-hero {
+            background-color: var(--primary-color);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.92), rgba(18, 56, 128, 0.92)), url('https://images.unsplash.com/photo-1523580494112-071d16940843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 194, 14, 0.15);
+            color: var(--secondary-color);
+            padding: 5px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .alumni-hero h1 { font-size: 3.2rem; margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .alumni-hero p { font-size: 1.2rem; color: #E0E6ED; max-width: 700px; margin: 0 auto 30px; }
+        
+        .join-btn {
+            background: var(--gold-gradient);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(255, 194, 14, 0.4);
+            transition: all 0.3s;
+        }
+        .join-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 194, 14, 0.6); }
+
+        /* Main Container */
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 10px; }
+        .section-header p { color: #666; font-size: 1.1rem; }
+
+        /* Hall of Fame Grid */
+        .hof-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .hof-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* ขอบทองด้านบน */
+        .hof-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: var(--gold-gradient);
+        }
+
+        .hof-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(18, 56, 128, 0.15); }
+
+        .hof-img {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid #F5F7FA;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .hof-name { color: var(--primary-color); font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
+        .hof-batch { color: var(--secondary-color); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+        .hof-role { color: #666; font-size: 0.95rem; line-height: 1.4; }
+
+        /* Contribution Section (CTA Banner) */
+        .contribution-banner {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--soft-shadow);
+            margin-bottom: 60px;
+            border: 1px solid #eaeaea;
+        }
+
+        .contrib-text { max-width: 600px; }
+        .contrib-text h3 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 15px; }
+        .contrib-text p { color: #555; font-size: 1.05rem; margin-bottom: 20px; }
+
+        .contrib-actions { display: flex; gap: 15px; }
+        .btn-outline { border: 2px solid var(--primary-color); color: var(--primary-color); padding: 12px 30px; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-outline:hover { background: var(--primary-color); color: white; }
+        
+        .btn-solid-blue { background: var(--primary-color); color: white; padding: 12px 30px; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-solid-blue:hover { background: #0c2657; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hof-grid { grid-template-columns: repeat(3, 1fr); }
+            .contribution-banner { flex-direction: column; text-align: center; gap: 30px; }
+            .contrib-text { max-width: 100%; }
+            .contrib-actions { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .hof-grid { grid-template-columns: repeat(2, 1fr); }
+            .alumni-hero h1 { font-size: 2.5rem; }
+        }
+        @media (max-width: 480px) {
+            .hof-grid { grid-template-columns: 1fr; }
+            .contrib-actions { flex-direction: column; width: 100%; }
+            .btn-outline, .btn-solid-blue { width: 100%; text-align: center; }
+        }
+
+        /* Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="alumni-hero">
+        <div class="hero-badge">SBW ALUMNI ASSOCIATION</div>
+        <h1>สมาคมศิษย์เก่าสระบุรีวิทยาคม</h1>
+        <p>สืบสานสายใย เชื่อมโยงความผูกพัน ส่งต่อความภาคภูมิใจจากรุ่นสู่รุ่น และร่วมเป็นส่วนหนึ่งในการพัฒนาสถานศึกษาอันเป็นที่รักของเรา</p>
+        <a href="#" class="join-btn">ลงทะเบียนศิษย์เก่า / อัปเดตข้อมูล</a>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Hall of Fame -->
+        <div class="section-header">
+            <h2>ทำเนียบศิษย์เก่าดีเด่น (Hall of Fame)</h2>
+            <p>เชิดชูเกียรติศิษย์เก่าที่สร้างชื่อเสียง ประสบความสำเร็จในหน้าที่การงาน และทำคุณประโยชน์แก่สังคม</p>
+        </div>
+
+        <div class="hof-grid">
+            <!-- Card 1 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">ดร. ตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 45</div>
+                <div class="hof-role">นักวิจัยและผู้เชี่ยวชาญด้านปัญญาประดิษฐ์ (AI) ระดับประเทศ</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">พ.ต.อ. ตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 50</div>
+                <div class="hof-role">ผู้กำกับการสถานีตำรวจภูธร และผู้ทำคุณประโยชน์ด้านสังคม</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">นพ. ตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 52</div>
+                <div class="hof-role">ผู้อำนวยการโรงพยาบาลศูนย์ประจำจังหวัด</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">คุณตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 58</div>
+                <div class="hof-role">CEO และผู้ก่อตั้งบริษัทสตาร์ทอัพด้าน Financial Tech (FinTech)</div>
+            </div>
+            
+            <!-- สามารถดึงข้อมูลมาแสดงต่อได้ผ่าน Blog/Archive Module ของ Divi -->
+        </div>
+
+        <!-- Giving Back / Contribution CTA -->
+        <div class="contribution-banner">
+            <div class="contrib-text">
+                <h3>ร่วมสนับสนุนและพัฒนาโรงเรียน (Giving Back)</h3>
+                <p>ทุกการสนับสนุนของท่าน คือฟันเฟืองสำคัญในการสร้างโอกาสทางการศึกษา พัฒนาแหล่งเรียนรู้ (เช่น The AI Forge) และสนับสนุนทุนการศึกษาแก่นักเรียนสระบุรีวิทยาคมรุ่นน้อง</p>
+            </div>
+            <div class="contrib-actions">
+                <a href="#" class="btn-outline">ติดต่อสมาคมฯ</a>
+                <a href="#" class="btn-solid-blue">ร่วมบริจาคสมทบทุน</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

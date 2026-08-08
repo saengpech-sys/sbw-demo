@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ปฏิทินกิจกรรมโรงเรียน | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Header */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: transform 0.2s; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* Hero Section */
+        .calendar-hero {
+            background-color: var(--primary-color);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.9), rgba(18, 56, 128, 0.9)), url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .calendar-hero h1 { font-size: 2.8rem; color: var(--secondary-color); margin-bottom: 10px; }
+        .calendar-hero p { font-size: 1.1rem; color: #E0E6ED; max-width: 600px; margin: 0 auto; }
+
+        /* Main Container Layout (2/3 + 1/3) */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        /* Calendar View Box */
+        .calendar-box {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .calendar-month {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: var(--bg-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: background 0.2s;
+        }
+        .nav-btn:hover { background: var(--secondary-color); }
+
+        /* Calendar Table Simulation */
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .calendar-table th {
+            padding: 12px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--bg-color);
+        }
+
+        .calendar-table td {
+            height: 70px;
+            vertical-align: top;
+            padding: 8px;
+            border: 1px solid #eee;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .day-number {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .event-dot {
+            display: block;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            font-size: 0.7rem;
+            padding: 2px 4px;
+            border-radius: 4px;
+            margin-top: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-dot.academic { background: #E3F2FD; color: #1976D2; }
+        .event-dot.holiday { background: #FFEBEE; color: #D32F2F; }
+
+        /* Upcoming Events Sidebar */
+        .events-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .widget-title {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .event-card-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .event-card-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+        .event-date-badge {
+            background: var(--primary-color);
+            color: white;
+            min-width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        .event-date-badge .day { font-size: 1.3rem; font-weight: 700; color: var(--secondary-color); }
+        .event-date-badge .month { font-size: 0.75rem; text-transform: uppercase; }
+
+        .event-details h4 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .event-details p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        /* Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="calendar-hero">
+        <h1>ปฏิทินกิจกรรมโรงเรียน</h1>
+        <p>ติดตามกำหนดการสอบ วันหยุดนักขัตฤกษ์ และกิจกรรมสำคัญตลอดปีการศึกษา</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Calendar Grid -->
+        <div class="calendar-box">
+            <div class="calendar-header">
+                <div class="calendar-month">สิงหาคม 2569</div>
+                <div class="calendar-nav">
+                    <button class="nav-btn">◄ เดือนก่อนหน้า</button>
+                    <button class="nav-btn">เดือนถัดไป ►</button>
+                </div>
+            </div>
+
+            <table class="calendar-table">
+                <thead>
+                    <tr>
+                        <th>อา.</th>
+                        <th>จ.</th>
+                        <th>อ.</th>
+                        <th>พ.</th>
+                        <th>พฤ.</th>
+                        <th>ศ.</th>
+                        <th>ส.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="day-number" style="color: #ccc;">26</span></td>
+                        <td><span class="day-number" style="color: #ccc;">27</span></td>
+                        <td><span class="day-number" style="color: #ccc;">28</span></td>
+                        <td><span class="day-number" style="color: #ccc;">29</span></td>
+                        <td><span class="day-number" style="color: #ccc;">30</span></td>
+                        <td><span class="day-number" style="color: #ccc;">31</span></td>
+                        <td><span class="day-number">1</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-number">2</span></td>
+                        <td><span class="day-number">3</span></td>
+                        <td><span class="day-number">4</span></td>
+                        <td><span class="day-number">5</span></td>
+                        <td><span class="day-number">6</span></td>
+                        <td><span class="day-number">7</span></td>
+                        <td><span class="day-number">8</span><span class="event-dot academic">อบรม AI</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-number">9</span></td>
+                        <td><span class="day-number">10</span></td>
+                        <td><span class="day-number">11</span></td>
+                        <td><span class="day-number">12</span><span class="event-dot holiday">วันแม่แห่งชาติ</span></td>
+                        <td><span class="day-number">13</span></td>
+                        <td><span class="day-number">14</span></td>
+                        <td><span class="day-number">15</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-number">16</span></td>
+                        <td><span class="day-number">17</span></td>
+                        <td><span class="day-number">18</span><span class="event-dot academic">สัปดาห์วิทยาศาสตร์</span></td>
+                        <td><span class="day-number">19</span></td>
+                        <td><span class="day-number">20</span></td>
+                        <td><span class="day-number">21</span></td>
+                        <td><span class="day-number">22</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-number">23</span></td>
+                        <td><span class="day-number">24</span></td>
+                        <td><span class="day-number">25</span></td>
+                        <td><span class="day-number">26</span></td>
+                        <td><span class="day-number">27</span></td>
+                        <td><span class="day-number">28</span></td>
+                        <td><span class="day-number">29</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Upcoming List Sidebar -->
+        <aside class="events-sidebar">
+            <div class="sidebar-widget">
+                <h3 class="widget-title">กิจกรรมเร็วๆ นี้</h3>
+                
+                <div class="event-card-item">
+                    <div class="event-date-badge">
+                        <span class="day">12</span>
+                        <span class="month">ส.ค.</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>วันเฉลิมพระชนมพรรษา สมเด็จพระบรมราชชนนีพันปีหลวง</h4>
+                        <p>📍 วันหยุดราชการ (ไม่มีการเรียนการสอน)</p>
+                    </div>
+                </div>
+
+                <div class="event-card-item">
+                    <div class="event-date-badge">
+                        <span class="day">18</span>
+                        <span class="month">ส.ค.</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>สัปดาห์วันวิทยาศาสตร์แห่งชาติ</h4>
+                        <p>📍 นิทรรศการนวัตกรรมและผลงานหุ่นยนต์ TPA</p>
+                    </div>
+                </div>
+
+                <div class="event-card-item">
+                    <div class="event-date-badge">
+                        <span class="day">25</span>
+                        <span class="month">ส.ค.</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>สอบเก็บคะแนนกลางภาคเรียนที่ 1/2569</h4>
+                        <p>📍 ทุกระดับชั้น (ม.1 - ม.6)</p>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

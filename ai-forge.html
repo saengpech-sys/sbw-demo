@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AI Forge | โรงเรียนสระบุรีวิทยาคม</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/original-common.css">
+  <style>
+/* ===== Body layout from demo/ai-forge.html (chrome stripped) ===== */
+
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --dark-bg: #0B132B; /* สีพื้นหลังสไตล์ Tech/Coding */
+            --card-bg: #1C2541;
+            --text-light: #E0E6ED;
+            --accent-glow: 0 0 15px rgba(255, 194, 14, 0.4);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--dark-bg); color: var(--text-light); line-height: 1.6; }
+        a { text-decoration: none; }
+        
+        /* Font สำหรับโค้ดดิ้ง */
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        
+        
+        
+        
+        
+        
+
+        /* Hero Section */
+        .forge-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #1C2541 0%, #0B132B 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* สร้าง Grid Pattern บางๆ เป็นพื้นหลัง */
+        .forge-hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .badge { display: inline-block; background: rgba(255, 194, 14, 0.1); color: var(--secondary-color); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; border: 1px solid rgba(255, 194, 14, 0.3); }
+        .forge-hero h1 { font-size: 4rem; color: #fff; margin-bottom: 20px; line-height: 1.1; letter-spacing: 1px; }
+        .forge-hero h1 span { color: var(--secondary-color); }
+        .forge-hero p { font-size: 1.2rem; color: #A0B2C6; margin-bottom: 40px; }
+        
+        .start-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: var(--accent-glow);
+        }
+        .start-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 194, 14, 0.6); }
+
+        /* Stages Section (6 Stages) */
+        .stages-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.2rem; color: #fff; margin-bottom: 15px; }
+        .section-title p { color: #A0B2C6; max-width: 600px; margin: 0 auto; }
+
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .stage-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .stage-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .stage-num {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+        }
+
+        .stage-icon { font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary-color); }
+        .stage-card h3 { color: #fff; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600; }
+        .stage-card p { color: #A0B2C6; font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .tech-stack {
+            display: flex; gap: 8px; flex-wrap: wrap;
+        }
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--secondary-color);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Destination Section (TPA Robot) */
+        .destination-section {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .dest-content { max-width: 800px; margin: 0 auto; }
+        .dest-content h2 { color: #fff; font-size: 2rem; margin-bottom: 20px; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .stages-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .forge-hero h1 { font-size: 3rem; }
+            .stages-grid { grid-template-columns: 1fr; }
+        }
+    
+  </style>
+</head>
+<body class="et_pb_pagebuilder_layout">
+<div id="et-boc" class="et-boc">
+<!-- Divi Theme Builder: Header (chrome from original-common.css) -->
+<header class="et-l et-l--header global-header">
+  <a class="logo et_pb_module et_pb_image" href="index.html">
+    <img src="assets/logo-sbw-new.png" alt="โรงเรียนสระบุรีวิทยาคม">
+    <span>สระบุรีวิทยาคม<span class="en">SARABURIWITTHAYAKHOM SCHOOL</span></span>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="เมนู">เมนู</button>
+  <ul class="main-menu et_pb_module et_pb_menu">
+    <li><a href="index.html">หน้าแรก</a></li>
+    <li>
+      <button type="button">เกี่ยวกับโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="about/index.html"><strong>ภาพรวมเกี่ยวกับโรงเรียน</strong></a></li>
+        <li><a href="about/history.html">ประวัติโรงเรียน</a></li><li><a href="about/vision.html">วิสัยทัศน์ / พันธกิจ</a></li><li><a href="about/philosophy.html">ปรัชญา / คติพจน์</a></li><li><a href="about/symbols.html">สัญลักษณ์โรงเรียน</a></li><li><a href="about/administrators.html">ทำเนียบผู้บริหาร</a></li><li><a href="about/director-message.html">สารจากผู้อำนวยการ</a></li><li><a href="about/org-structure.html">โครงสร้างการบริหาร</a></li><li><a href="about/general.html">ข้อมูลทั่วไป</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">หลักสูตรและการเรียนการสอน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="curriculum/index.html"><strong>ภาพรวมหลักสูตรและการเรียนการสอน</strong></a></li>
+        <li><a href="curriculum/lower-secondary.html">หลักสูตรมัธยมศึกษาตอนต้น</a></li><li><a href="curriculum/upper-secondary.html">หลักสูตรมัธยมศึกษาตอนปลาย</a></li><li><a href="curriculum/special-programs.html">ห้องเรียนพิเศษ</a></li><li><a href="curriculum/study-plans.html">แผนการเรียน</a></li><li><a href="curriculum/departments.html">กลุ่มสาระการเรียนรู้</a></li><li><a href="curriculum/handbook.html">คู่มือหลักสูตร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ข่าวประชาสัมพันธ์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="news/index.html"><strong>ภาพรวมข่าวประชาสัมพันธ์</strong></a></li>
+        <li><a href="news/general.html">ข่าวทั่วไป</a></li><li><a href="news/academic.html">ข่าววิชาการ</a></li><li><a href="news/activities.html">ข่าวกิจกรรม</a></li><li><a href="news/announcements.html">ประกาศโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">รับสมัครนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="admission/index.html"><strong>ภาพรวมรับสมัครนักเรียน</strong></a></li>
+        <li><a href="admission/regulations.html">ระเบียบการรับสมัคร</a></li><li><a href="admission/calendar.html">ปฏิทินการรับสมัคร</a></li><li><a href="admission/status.html">ตรวจสอบสถานะ</a></li><li><a href="admission/results.html">ประกาศผล</a></li><li><a href="admission/faq.html">FAQ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ชีวิตในโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="student-life/index.html"><strong>ภาพรวมชีวิตในโรงเรียน</strong></a></li>
+        <li><a href="student-life/highlights.html">กิจกรรมเด่น</a></li><li><a href="student-life/clubs.html">ชุมนุม</a></li><li><a href="student-life/sports.html">กีฬา</a></li><li><a href="student-life/esports.html">eSports</a></li><li><a href="student-life/gallery.html">Gallery</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">บุคลากร ▾</button>
+      <ul class="sub-menu">
+        <li><a href="staff/index.html"><strong>ภาพรวมบุคลากร</strong></a></li>
+        <li><a href="staff/executives.html">ผู้บริหาร</a></li><li><a href="staff/teachers.html">ครูผู้สอน</a></li><li><a href="staff/officers.html">เจ้าหน้าที่</a></li><li><a href="staff/contact.html">ติดต่อบุคลากร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="students/index.html"><strong>ภาพรวมสำหรับนักเรียน</strong></a></li>
+        <li><a href="students/timetable.html">ตารางเรียน</a></li><li><a href="students/exam-schedule.html">ตารางสอบ</a></li><li><a href="students/activities.html">ระบบงานกิจกรรม</a></li><li><a href="students/handbook.html">คู่มือนักเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับผู้ปกครอง ▾</button>
+      <ul class="sub-menu">
+        <li><a href="parents/index.html"><strong>ภาพรวมสำหรับผู้ปกครอง</strong></a></li>
+        <li><a href="parents/news.html">ข่าวผู้ปกครอง</a></li><li><a href="parents/handbook.html">คู่มือผู้ปกครอง</a></li><li><a href="parents/advisor.html">ติดต่อครูที่ปรึกษา</a></li><li><a href="parents/report.html">ช่องทางแจ้งเรื่อง</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ฐานความรู้ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="knowledge-base/index.html"><strong>ภาพรวมฐานความรู้</strong></a></li>
+        <li><a href="knowledge-base/forms.html">แบบฟอร์มราชการ</a></li><li><a href="knowledge-base/documents.html">คู่มือ / เอกสาร</a></li><li><a href="knowledge-base/media.html">โลโก้ / สื่อ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ติดต่อเรา ▾</button>
+      <ul class="sub-menu">
+        <li><a href="contact/index.html"><strong>ภาพรวมติดต่อเรา</strong></a></li>
+        <li><a href="contact/info.html">ข้อมูลติดต่อ</a></li><li><a href="contact/map.html">แผนที่</a></li><li><a href="contact/message.html">ส่งข้อความถึงโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ระบบออนไลน์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="portals/index.html"><strong>ภาพรวมระบบออนไลน์</strong></a></li>
+        <li><a href="portals/student.html">Student Portal</a></li><li><a href="portals/teacher.html">Teacher Portal</a></li><li><a href="portals/grades.html">เช็คผลการเรียน</a></li>
+      </ul>
+    </li>
+    <li><a href="sitemap.html">แผนผังเว็บ</a></li>
+  </ul>
+  <a class="btn-portal et_pb_button" href="portals/index.html">Portals</a>
+</header>
+<!-- demo source: demo/ai-forge.html | pipeline: unified -->
+<div id="et-main-area">
+  <div id="main-content">
+    <article class="et_pb_post">
+      <div class="et_builder_inner_content">
+<!-- Header -->
+    
+
+    <!-- Hero Section -->
+    <section class="forge-hero">
+        <div class="hero-content">
+            <div class="badge code-font">v2.0_Online_Learning_Ecosystem</div>
+            <h1>The <span>AI Forge</span></h1>
+            <p>แพลตฟอร์มการเรียนรู้รูปแบบ RPG Coding Sandbox พัฒนาทักษะกระบวนการคิดเชิงคำนวณ (Computational Thinking) ฝ่าด่านทดสอบและสร้างสรรค์นวัตกรรมสู่อนาคต</p>
+            <a href="index.html" class="start-btn">>> START_ADVENTURE()</a>
+        </div>
+    </section>
+
+    <!-- 6 Stages of Mastery -->
+    <section class="stages-section">
+        <div class="section-title">
+            <h2 class="code-font">6 Stages of Mastery</h2>
+            <p>เส้นทางการเรียนรู้ที่ถูกออกแบบมาเพื่อบ่มเพาะโปรแกรมเมอร์และนักพัฒนานวัตกรรมรุ่นใหม่ ตั้งแต่พื้นฐานไปจนถึงระดับการแข่งขัน</p>
+        </div>
+
+        <div class="stages-grid">
+            
+            <!-- Stage 1 -->
+            <div class="stage-card">
+                <div class="stage-num">01</div>
+                <div class="stage-icon">🐍</div>
+                <h3>Logic & Syntax</h3>
+                <p>ปูพื้นฐานตรรกะการเขียนโปรแกรม โครงสร้างข้อมูล และอัลกอริทึมเบื้องต้น ผ่านการแก้โจทย์ปัญหา (Problem Solving)</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Algorithms</span>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="stage-card">
+                <div class="stage-num">02</div>
+                <div class="stage-icon">⚡</div>
+                <h3>Frontend Architecture</h3>
+                <p>เรียนรู้การสร้างส่วนติดต่อผู้ใช้งาน (UI) แบบโต้ตอบได้ การจัดการ State และการออกแบบคอมโพเนนต์ที่ทันสมัย</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">HTML/CSS</span>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="stage-card">
+                <div class="stage-num">03</div>
+                <div class="stage-icon">🔥</div>
+                <h3>Backend & Database</h3>
+                <p>เชื่อมต่อระบบเข้ากับฐานข้อมูลแบบ Real-time เรียนรู้การจัดการข้อมูลผู้ใช้ และระบบยืนยันตัวตน</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">NoSQL</span>
+                </div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="stage-card">
+                <div class="stage-num">04</div>
+                <div class="stage-icon">🧠</div>
+                <h3>AI & Machine Learning</h3>
+                <p>ทำความเข้าใจหลักการทำงานของปัญญาประดิษฐ์ การเทรนโมเดลเบื้องต้น และการประยุกต์ใช้ AI ในการประมวลผลข้อมูล</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">AI Models</span>
+                    <span class="tech-tag">Data Science</span>
+                </div>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="stage-card">
+                <div class="stage-num">05</div>
+                <div class="stage-icon">🚑</div>
+                <h3>Robo Rescue (TPA)</h3>
+                <p>จำลองสถานการณ์และเขียนโปรแกรมควบคุมหุ่นยนต์กู้ภัยอัตโนมัติ เพื่อเตรียมความพร้อมสำหรับการแข่งขันระดับประเทศ</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Robotics</span>
+                    <span class="tech-tag">Sensors</span>
+                </div>
+            </div>
+
+            <!-- Stage 6 -->
+            <div class="stage-card">
+                <div class="stage-num">06</div>
+                <div class="stage-icon">⚽</div>
+                <h3>Robo Soccer (TPA)</h3>
+                <p>ขั้นสุดของการบูรณาการ! ออกแบบและควบคุมหุ่นยนต์เตะฟุตบอล ที่ต้องใช้ทั้งความแม่นยำของฮาร์ดแวร์และการตัดสินใจของซอฟต์แวร์</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Automation</span>
+                    <span class="tech-tag">Mechanics</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Destination Section -->
+    <section class="destination-section">
+        <div class="dest-content">
+            <h2>จากห้องเรียนสู่สนามแข่งระดับประเทศ</h2>
+            <p style="color: #A0B2C6; font-size: 1.1rem; margin-bottom: 30px;">
+                ผู้ที่ผ่านการทดสอบใน The AI Forge จะได้รับการพิจารณาคัดเลือกเป็นตัวแทนโรงเรียนสระบุรีวิทยาคม<br>
+                เข้าร่วมการแข่งขันหุ่นยนต์ <strong>TPA Robot (สมาคมส่งเสริมเทคโนโลยี ไทย-ญี่ปุ่น)</strong> ประจำปี
+            </p>
+            <a href="index.html" style="color: var(--secondary-color); font-weight: 600; text-decoration: underline;">ดูทำเนียบผลงานรุ่นพี่ที่ผ่านมา</a>
+        </div>
+    </section>
+      </div>
+    </article>
+  </div>
+</div>
+<div class="extra-bar">
+  <a href="admission/index.html">รับสมัคร</a>
+  <a href="news/index.html">ข่าวสาร</a>
+  <a href="ai-center.html">SBW-AI</a>
+  <a href="alumni.html">ศิษย์เก่า</a>
+  <a href="ita.html">ITA</a>
+  <a href="e-library.html">E-Library</a>
+  <a href="sitemap.html">แผนผังเว็บไซต์</a>
+</div>
+<footer class="et-l et-l--footer global-footer">
+  <div class="footer-grid et_pb_row">
+    <div class="footer-col"><h4>โรงเรียนสระบุรีวิทยาคม</h4><p>ส.บ.ว.รวมใจ ไปได้ไกลกว่าเดิม</p><p>ลูกเหลืองฟ้า สง่างาม สมนาม สระบุรีวิทยาคม</p></div>
+    <div class="footer-col"><h4>เมนูลัด</h4><ul>
+      <li><a href="admission/index.html">สมัครเรียน</a></li>
+      <li><a href="portals/index.html">ระบบออนไลน์</a></li>
+      <li><a href="knowledge-base/index.html">ฐานความรู้</a></li>
+      <li><a href="sitemap.html">แผนผังเว็บไซต์</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>ติดต่อเรา</h4><ul>
+      <li>532 ถนนพหลโยธิน ตำบลปากเพรียว อำเภอเมืองสระบุรี จังหวัดสระบุรี 18000</li><li>โทร 036-211206, 036-231572</li><li>sbw_saraburi@hotmail.com</li>
+    </ul></div>
+    <div class="footer-col"><h4>สำหรับผู้ใช้</h4><ul>
+      <li><a href="students/index.html">สำหรับนักเรียน</a></li>
+      <li><a href="parents/index.html">สำหรับผู้ปกครอง</a></li>
+      <li><a href="staff/index.html">บุคลากร</a></li>
+      <li><a href="privacy.html">ความเป็นส่วนตัว</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 โรงเรียนสระบุรีวิทยาคม · มาตรฐานเดียวจาก demo/ (T1–T6 + custom)</div>
+</footer>
+<script src="js/main.js"></script>
+</div>
+</body>
+</html>

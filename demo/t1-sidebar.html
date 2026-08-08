@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติโรงเรียน | โรงเรียนสระบุรีวิทยาคม</title>
+    <!-- โหลด Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ส่วนที่ 1: Global Settings */
+        :root {
+            --primary-color: #123880; /* น้ำเงินเข้ม */
+            --secondary-color: #FFC20E; /* เหลืองทอง */
+            --bg-color: #F5F7FA; /* เทาฟ้าอ่อน */
+            --border-radius: 12px; /* ขอบโค้งมน */
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08); /* เงา Soft Shadow */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ส่วนที่ 2: Global Header */
+        .global-header {
+            background-color: #ffffff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mega-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .mega-menu li a {
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mega-menu li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn-portal {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 10px 24px;
+            border-radius: 25px; /* ปุ่มขอบมน */
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4);
+        }
+
+        /* Template 1: หน้าข้อมูลทั่วไป - Hero Section */
+        .hero-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.9), rgba(18, 56, 128, 0.9)), url('https://via.placeholder.com/1920x600');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        /* Template 1: Layout 1/4 + 3/4 */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* Divi Sidebar Module */
+        .sidebar {
+            flex: 1; /* 1/4 Row */
+        }
+
+        .sidebar-menu {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .sidebar-menu h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .sidebar-menu ul {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu li a {
+            color: #555;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-menu li a.active, .sidebar-menu li a:hover {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            font-weight: 500;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* Divi Content Module */
+        .main-content {
+            flex: 3; /* 3/4 Row */
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .main-content img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .main-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* Global Footer */
+        .global-footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 5% 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #ddd;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .mega-menu, .btn-portal {
+                display: none; /* ซ่อนบนมือถือชั่วคราวสำหรับตัวอย่าง */
+            }
+        }
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Global Header -->
+    <header class="global-header">
+        <div class="logo">
+            <!-- Icon ตัวแทน Logo -->
+            <span style="background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem;">ส.บ.</span>
+            สระบุรีวิทยาคม
+        </div>
+        <ul class="mega-menu">
+            <li><a href="#">หน้าแรก</a></li>
+            <li><a href="#">ข้อมูลโรงเรียน ▼</a></li>
+            <li><a href="#">หลักสูตร ▼</a></li>
+            <li><a href="#">บุคลากร</a></li>
+            <li><a href="#">ข่าวสาร</a></li>
+        </ul>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Template 1: Hero Section (Divi Fullwidth Header) -->
+    <section class="hero-section">
+        <h1>ประวัติโรงเรียนสระบุรีวิทยาคม</h1>
+        <p>Saraburiwittayakhom School History</p>
+    </section>
+
+    <!-- Template 1: Body Content (Row 1/4 + 3/4) -->
+    <div class="container">
+        
+        <!-- Sidebar (1/4) -->
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <h3>ข้อมูลทั่วไป</h3>
+                <ul>
+                    <li><a href="#" class="active">ประวัติโรงเรียน</a></li>
+                    <li><a href="#">วิสัยทัศน์และพันธกิจ</a></li>
+                    <li><a href="#">ทำเนียบผู้บริหาร</a></li>
+                    <li><a href="#">สัญลักษณ์ประจำโรงเรียน</a></li>
+                    <li><a href="#">แผนที่และการเดินทาง</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content (3/4) -->
+        <main class="main-content">
+            <h2>เกียรติภูมิแห่งสระบุรีวิทยาคม</h2>
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Saraburiwittayakhom School Campus">
+            <p>โรงเรียนสระบุรีวิทยาคม ก่อตั้งขึ้นเพื่อเป็นสถานศึกษาที่มุ่งเน้นความเป็นเลิศทางวิชาการและคุณธรรม เรามุ่งมั่นพัฒนาศักยภาพของผู้เรียนให้ก้าวทันโลกยุคดิจิทัล ภายใต้สภาพแวดล้อมที่ส่งเสริมการเรียนรู้ระดับสากล (World Class Standard)</p>
+            <p>ด้วยหลักสูตรที่ทันสมัยและการบูรณาการเทคโนโลยีเข้ากับการเรียนการสอน โรงเรียนสระบุรีวิทยาคมจึงเป็นศูนย์กลางแห่งการเรียนรู้ที่พร้อมบ่มเพาะเยาวชนให้เติบโตเป็นบุคลากรที่มีคุณภาพของประเทศ...</p>
+        </main>
+
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>โรงเรียนสระบุรีวิทยาคม</h4>
+                <p style="color: #ddd; font-size: 0.9rem;">มุ่งมั่นพัฒนาผู้เรียนสู่มาตรฐานสากล เปี่ยมด้วยคุณธรรมและความรู้คู่เทคโนโลยี</p>
+            </div>
+            <div class="footer-col">
+                <h4>เมนูลัด</h4>
+                <ul>
+                    <li><a href="#">สมัครเรียน</a></li>
+                    <li><a href="#">ระบบตรวจสอบผลการเรียน</a></li>
+                    <li><a href="#">ดาวน์โหลดเอกสาร</a></li>
+                    <li><a href="#">ข่าวประกาศ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ติดต่อเรา</h4>
+                <ul>
+                    <li style="color: #ddd;">ถนนพหลโยธิน ตำบลปากเพรียว</li>
+                    <li style="color: #ddd;">อำเภอเมือง จังหวัดสระบุรี 18000</li>
+                    <li style="color: #ddd;">โทร: 036-xxx-xxx</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ติดตามเรา</h4>
+                <ul>
+                    <li><a href="#">Facebook Page</a></li>
+                    <li><a href="#">YouTube Channel</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 โรงเรียนสระบุรีวิทยาคม (Saraburiwittayakhom School). All Rights Reserved. | พัฒนาด้วยระบบ WordPress & Divi Theme
+        </div>
+    </footer>
+
+</body>
+</html>

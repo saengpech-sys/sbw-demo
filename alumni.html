@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สมาคมศิษย์เก่า | โรงเรียนสระบุรีวิทยาคม</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/original-common.css">
+  <style>
+/* ===== Body layout from demo/alumni.html (chrome stripped) ===== */
+
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --gold-gradient: linear-gradient(135deg, #FFC20E 0%, #D49A00 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Header */
+        
+        
+        
+        
+        
+
+        /* Alumni Hero */
+        .alumni-hero {
+            background-color: var(--primary-color);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.92), rgba(18, 56, 128, 0.92)), url('https://images.unsplash.com/photo-1523580494112-071d16940843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 194, 14, 0.15);
+            color: var(--secondary-color);
+            padding: 5px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .alumni-hero h1 { font-size: 3.2rem; margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .alumni-hero p { font-size: 1.2rem; color: #E0E6ED; max-width: 700px; margin: 0 auto 30px; }
+        
+        .join-btn {
+            background: var(--gold-gradient);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(255, 194, 14, 0.4);
+            transition: all 0.3s;
+        }
+        .join-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 194, 14, 0.6); }
+
+        /* Main Container */
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 10px; }
+        .section-header p { color: #666; font-size: 1.1rem; }
+
+        /* Hall of Fame Grid */
+        .hof-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .hof-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* ขอบทองด้านบน */
+        .hof-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: var(--gold-gradient);
+        }
+
+        .hof-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(18, 56, 128, 0.15); }
+
+        .hof-img {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid #F5F7FA;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .hof-name { color: var(--primary-color); font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
+        .hof-batch { color: var(--secondary-color); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+        .hof-role { color: #666; font-size: 0.95rem; line-height: 1.4; }
+
+        /* Contribution Section (CTA Banner) */
+        .contribution-banner {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--soft-shadow);
+            margin-bottom: 60px;
+            border: 1px solid #eaeaea;
+        }
+
+        .contrib-text { max-width: 600px; }
+        .contrib-text h3 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 15px; }
+        .contrib-text p { color: #555; font-size: 1.05rem; margin-bottom: 20px; }
+
+        .contrib-actions { display: flex; gap: 15px; }
+        .btn-outline { border: 2px solid var(--primary-color); color: var(--primary-color); padding: 12px 30px; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-outline:hover { background: var(--primary-color); color: white; }
+        
+        .btn-solid-blue { background: var(--primary-color); color: white; padding: 12px 30px; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-solid-blue:hover { background: #0c2657; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hof-grid { grid-template-columns: repeat(3, 1fr); }
+            .contribution-banner { flex-direction: column; text-align: center; gap: 30px; }
+            .contrib-text { max-width: 100%; }
+            .contrib-actions { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .hof-grid { grid-template-columns: repeat(2, 1fr); }
+            .alumni-hero h1 { font-size: 2.5rem; }
+        }
+        @media (max-width: 480px) {
+            .hof-grid { grid-template-columns: 1fr; }
+            .contrib-actions { flex-direction: column; width: 100%; }
+            .btn-outline, .btn-solid-blue { width: 100%; text-align: center; }
+        }
+
+        /* Footer */
+        
+    
+  </style>
+</head>
+<body class="et_pb_pagebuilder_layout">
+<div id="et-boc" class="et-boc">
+<!-- Divi Theme Builder: Header (chrome from original-common.css) -->
+<header class="et-l et-l--header global-header">
+  <a class="logo et_pb_module et_pb_image" href="index.html">
+    <img src="assets/logo-sbw-new.png" alt="โรงเรียนสระบุรีวิทยาคม">
+    <span>สระบุรีวิทยาคม<span class="en">SARABURIWITTHAYAKHOM SCHOOL</span></span>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="เมนู">เมนู</button>
+  <ul class="main-menu et_pb_module et_pb_menu">
+    <li><a href="index.html">หน้าแรก</a></li>
+    <li>
+      <button type="button">เกี่ยวกับโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="about/index.html"><strong>ภาพรวมเกี่ยวกับโรงเรียน</strong></a></li>
+        <li><a href="about/history.html">ประวัติโรงเรียน</a></li><li><a href="about/vision.html">วิสัยทัศน์ / พันธกิจ</a></li><li><a href="about/philosophy.html">ปรัชญา / คติพจน์</a></li><li><a href="about/symbols.html">สัญลักษณ์โรงเรียน</a></li><li><a href="about/administrators.html">ทำเนียบผู้บริหาร</a></li><li><a href="about/director-message.html">สารจากผู้อำนวยการ</a></li><li><a href="about/org-structure.html">โครงสร้างการบริหาร</a></li><li><a href="about/general.html">ข้อมูลทั่วไป</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">หลักสูตรและการเรียนการสอน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="curriculum/index.html"><strong>ภาพรวมหลักสูตรและการเรียนการสอน</strong></a></li>
+        <li><a href="curriculum/lower-secondary.html">หลักสูตรมัธยมศึกษาตอนต้น</a></li><li><a href="curriculum/upper-secondary.html">หลักสูตรมัธยมศึกษาตอนปลาย</a></li><li><a href="curriculum/special-programs.html">ห้องเรียนพิเศษ</a></li><li><a href="curriculum/study-plans.html">แผนการเรียน</a></li><li><a href="curriculum/departments.html">กลุ่มสาระการเรียนรู้</a></li><li><a href="curriculum/handbook.html">คู่มือหลักสูตร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ข่าวประชาสัมพันธ์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="news/index.html"><strong>ภาพรวมข่าวประชาสัมพันธ์</strong></a></li>
+        <li><a href="news/general.html">ข่าวทั่วไป</a></li><li><a href="news/academic.html">ข่าววิชาการ</a></li><li><a href="news/activities.html">ข่าวกิจกรรม</a></li><li><a href="news/announcements.html">ประกาศโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">รับสมัครนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="admission/index.html"><strong>ภาพรวมรับสมัครนักเรียน</strong></a></li>
+        <li><a href="admission/regulations.html">ระเบียบการรับสมัคร</a></li><li><a href="admission/calendar.html">ปฏิทินการรับสมัคร</a></li><li><a href="admission/status.html">ตรวจสอบสถานะ</a></li><li><a href="admission/results.html">ประกาศผล</a></li><li><a href="admission/faq.html">FAQ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ชีวิตในโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="student-life/index.html"><strong>ภาพรวมชีวิตในโรงเรียน</strong></a></li>
+        <li><a href="student-life/highlights.html">กิจกรรมเด่น</a></li><li><a href="student-life/clubs.html">ชุมนุม</a></li><li><a href="student-life/sports.html">กีฬา</a></li><li><a href="student-life/esports.html">eSports</a></li><li><a href="student-life/gallery.html">Gallery</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">บุคลากร ▾</button>
+      <ul class="sub-menu">
+        <li><a href="staff/index.html"><strong>ภาพรวมบุคลากร</strong></a></li>
+        <li><a href="staff/executives.html">ผู้บริหาร</a></li><li><a href="staff/teachers.html">ครูผู้สอน</a></li><li><a href="staff/officers.html">เจ้าหน้าที่</a></li><li><a href="staff/contact.html">ติดต่อบุคลากร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="students/index.html"><strong>ภาพรวมสำหรับนักเรียน</strong></a></li>
+        <li><a href="students/timetable.html">ตารางเรียน</a></li><li><a href="students/exam-schedule.html">ตารางสอบ</a></li><li><a href="students/activities.html">ระบบงานกิจกรรม</a></li><li><a href="students/handbook.html">คู่มือนักเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับผู้ปกครอง ▾</button>
+      <ul class="sub-menu">
+        <li><a href="parents/index.html"><strong>ภาพรวมสำหรับผู้ปกครอง</strong></a></li>
+        <li><a href="parents/news.html">ข่าวผู้ปกครอง</a></li><li><a href="parents/handbook.html">คู่มือผู้ปกครอง</a></li><li><a href="parents/advisor.html">ติดต่อครูที่ปรึกษา</a></li><li><a href="parents/report.html">ช่องทางแจ้งเรื่อง</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ฐานความรู้ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="knowledge-base/index.html"><strong>ภาพรวมฐานความรู้</strong></a></li>
+        <li><a href="knowledge-base/forms.html">แบบฟอร์มราชการ</a></li><li><a href="knowledge-base/documents.html">คู่มือ / เอกสาร</a></li><li><a href="knowledge-base/media.html">โลโก้ / สื่อ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ติดต่อเรา ▾</button>
+      <ul class="sub-menu">
+        <li><a href="contact/index.html"><strong>ภาพรวมติดต่อเรา</strong></a></li>
+        <li><a href="contact/info.html">ข้อมูลติดต่อ</a></li><li><a href="contact/map.html">แผนที่</a></li><li><a href="contact/message.html">ส่งข้อความถึงโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ระบบออนไลน์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="portals/index.html"><strong>ภาพรวมระบบออนไลน์</strong></a></li>
+        <li><a href="portals/student.html">Student Portal</a></li><li><a href="portals/teacher.html">Teacher Portal</a></li><li><a href="portals/grades.html">เช็คผลการเรียน</a></li>
+      </ul>
+    </li>
+    <li><a href="sitemap.html">แผนผังเว็บ</a></li>
+  </ul>
+  <a class="btn-portal et_pb_button" href="portals/index.html">Portals</a>
+</header>
+<!-- demo source: demo/alumni.html | pipeline: unified -->
+<div id="et-main-area">
+  <div id="main-content">
+    <article class="et_pb_post">
+      <div class="et_builder_inner_content">
+<!-- Header -->
+    
+
+    <!-- Hero Section -->
+    <section class="alumni-hero">
+        <div class="hero-badge">SBW ALUMNI ASSOCIATION</div>
+        <h1>สมาคมศิษย์เก่าสระบุรีวิทยาคม</h1>
+        <p>สืบสานสายใย เชื่อมโยงความผูกพัน ส่งต่อความภาคภูมิใจจากรุ่นสู่รุ่น และร่วมเป็นส่วนหนึ่งในการพัฒนาสถานศึกษาอันเป็นที่รักของเรา</p>
+        <a href="index.html" class="join-btn">ลงทะเบียนศิษย์เก่า / อัปเดตข้อมูล</a>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Hall of Fame -->
+        <div class="section-header">
+            <h2>ทำเนียบศิษย์เก่าดีเด่น (Hall of Fame)</h2>
+            <p>เชิดชูเกียรติศิษย์เก่าที่สร้างชื่อเสียง ประสบความสำเร็จในหน้าที่การงาน และทำคุณประโยชน์แก่สังคม</p>
+        </div>
+
+        <div class="hof-grid">
+            <!-- Card 1 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">ดร. ตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 45</div>
+                <div class="hof-role">นักวิจัยและผู้เชี่ยวชาญด้านปัญญาประดิษฐ์ (AI) ระดับประเทศ</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">พ.ต.อ. ตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 50</div>
+                <div class="hof-role">ผู้กำกับการสถานีตำรวจภูธร และผู้ทำคุณประโยชน์ด้านสังคม</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">นพ. ตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 52</div>
+                <div class="hof-role">ผู้อำนวยการโรงพยาบาลศูนย์ประจำจังหวัด</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="hof-card">
+                <img src="https://via.placeholder.com/150x150?text=Alumni" alt="Alumni Photo" class="hof-img">
+                <div class="hof-name">คุณตัวอย่าง นามสกุลสมมติ</div>
+                <div class="hof-batch">ส.บ. รุ่นที่ 58</div>
+                <div class="hof-role">CEO และผู้ก่อตั้งบริษัทสตาร์ทอัพด้าน Financial Tech (FinTech)</div>
+            </div>
+            
+            <!-- สามารถดึงข้อมูลมาแสดงต่อได้ผ่าน Blog/Archive Module ของ Divi -->
+        </div>
+
+        <!-- Giving Back / Contribution CTA -->
+        <div class="contribution-banner">
+            <div class="contrib-text">
+                <h3>ร่วมสนับสนุนและพัฒนาโรงเรียน (Giving Back)</h3>
+                <p>ทุกการสนับสนุนของท่าน คือฟันเฟืองสำคัญในการสร้างโอกาสทางการศึกษา พัฒนาแหล่งเรียนรู้ (เช่น The AI Forge) และสนับสนุนทุนการศึกษาแก่นักเรียนสระบุรีวิทยาคมรุ่นน้อง</p>
+            </div>
+            <div class="contrib-actions">
+                <a href="index.html" class="btn-outline">ติดต่อสมาคมฯ</a>
+                <a href="index.html" class="btn-solid-blue">ร่วมบริจาคสมทบทุน</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+      </div>
+    </article>
+  </div>
+</div>
+<div class="extra-bar">
+  <a href="admission/index.html">รับสมัคร</a>
+  <a href="news/index.html">ข่าวสาร</a>
+  <a href="ai-center.html">SBW-AI</a>
+  <a href="alumni.html">ศิษย์เก่า</a>
+  <a href="ita.html">ITA</a>
+  <a href="e-library.html">E-Library</a>
+  <a href="sitemap.html">แผนผังเว็บไซต์</a>
+</div>
+<footer class="et-l et-l--footer global-footer">
+  <div class="footer-grid et_pb_row">
+    <div class="footer-col"><h4>โรงเรียนสระบุรีวิทยาคม</h4><p>ส.บ.ว.รวมใจ ไปได้ไกลกว่าเดิม</p><p>ลูกเหลืองฟ้า สง่างาม สมนาม สระบุรีวิทยาคม</p></div>
+    <div class="footer-col"><h4>เมนูลัด</h4><ul>
+      <li><a href="admission/index.html">สมัครเรียน</a></li>
+      <li><a href="portals/index.html">ระบบออนไลน์</a></li>
+      <li><a href="knowledge-base/index.html">ฐานความรู้</a></li>
+      <li><a href="sitemap.html">แผนผังเว็บไซต์</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>ติดต่อเรา</h4><ul>
+      <li>532 ถนนพหลโยธิน ตำบลปากเพรียว อำเภอเมืองสระบุรี จังหวัดสระบุรี 18000</li><li>โทร 036-211206, 036-231572</li><li>sbw_saraburi@hotmail.com</li>
+    </ul></div>
+    <div class="footer-col"><h4>สำหรับผู้ใช้</h4><ul>
+      <li><a href="students/index.html">สำหรับนักเรียน</a></li>
+      <li><a href="parents/index.html">สำหรับผู้ปกครอง</a></li>
+      <li><a href="staff/index.html">บุคลากร</a></li>
+      <li><a href="privacy.html">ความเป็นส่วนตัว</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 โรงเรียนสระบุรีวิทยาคม · มาตรฐานเดียวจาก demo/ (T1–T6 + custom)</div>
+</footer>
+<script src="js/main.js"></script>
+</div>
+</body>
+</html>

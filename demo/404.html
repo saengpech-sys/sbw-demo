@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ไม่พบหน้าเว็บ (404 Not Found) | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; }
+
+        /* Global Header (ย่อส่วน) */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: transform 0.2s; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* 404 Main Container */
+        .error-page-wrapper {
+            flex-grow: 1; /* ขยายให้เต็มพื้นที่ความสูงที่เหลืออยู่ */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+        }
+
+        .error-container {
+            background: white;
+            max-width: 700px;
+            width: 100%;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: var(--soft-shadow);
+            text-align: center;
+        }
+
+        /* 404 Typography */
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 0px var(--secondary-color); /* สร้างมิติตัวเลขด้วยเงาสีเหลือง */
+            letter-spacing: -2px;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .error-desc {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Search Module จำลอง */
+        .search-form {
+            display: flex;
+            max-width: 450px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            border: 2px solid #eee;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-input:focus {
+            border-color: var(--primary-color);
+        }
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0 25px;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .search-btn:hover {
+            background-color: #0c2657;
+        }
+
+        /* Quick Navigation Buttons */
+        .quick-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-solid {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-solid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .error-code { font-size: 5rem; }
+            .error-title { font-size: 1.4rem; }
+            .search-form { flex-direction: column; gap: 10px; border-radius: 0; }
+            .search-input { border-radius: 12px; }
+            .search-btn { position: static; padding: 15px; border-radius: 12px; }
+        }
+
+        /* Global Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 30px 5% 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- 404 Content -->
+    <main class="error-page-wrapper">
+        <div class="error-container">
+            
+            <div class="error-code">404</div>
+            <h1 class="error-title">ขออภัย! ไม่พบหน้าที่คุณต้องการ</h1>
+            <p class="error-desc">หน้าเว็บที่คุณกำลังพยายามเข้าถึงอาจถูกลบ เปลี่ยนชื่อ หรือไม่มีอยู่จริง กรุณาตรวจสอบ URL อีกครั้ง หรือใช้ช่องค้นหาด้านล่างเพื่อหาข้อมูลที่ต้องการ</p>
+
+            <!-- Search Form Module -->
+            <form class="search-form" action="#" method="GET">
+                <input type="text" class="search-input" placeholder="ค้นหาข่าวสาร หรือข้อมูลโรงเรียน..." required>
+                <button type="submit" class="search-btn">ค้นหา</button>
+            </form>
+
+            <!-- Navigation Recovery -->
+            <div class="quick-nav">
+                <a href="#" class="btn-solid">🏠 กลับสู่หน้าหลัก</a>
+                <a href="#" class="btn-outline">ติดต่อโรงเรียน</a>
+                <a href="#" class="btn-outline">ดูข่าวสารล่าสุด</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

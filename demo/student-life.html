@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชีวิตนักเรียนและกิจกรรม (Student Life) | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Header */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: transform 0.2s; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* Hero Section */
+        .life-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to bottom, rgba(18, 56, 128, 0.4), rgba(18, 56, 128, 0.9)), url('https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+        .life-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .life-hero h1 { font-size: 3.5rem; color: var(--secondary-color); margin-bottom: 15px; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .life-hero p { font-size: 1.2rem; margin-bottom: 0; font-weight: 300; }
+
+        /* Main Container */
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 10px; }
+        .section-header p { color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+        /* Pillars of Student Life (4 Columns) */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+        .pillar-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .pillar-card:hover { transform: translateY(-10px); box-shadow: var(--hover-shadow); }
+        .pillar-icon { font-size: 3rem; margin-bottom: 20px; display: inline-block; }
+        .pillar-title { color: var(--primary-color); font-weight: 600; font-size: 1.2rem; margin-bottom: 10px; }
+        .pillar-desc { color: #666; font-size: 0.95rem; }
+
+        /* Featured Clubs (Masonry-like Grid) */
+        .clubs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .club-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .club-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
+
+        .club-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        .club-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .club-category {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .club-title { color: var(--primary-color); font-size: 1.3rem; margin-bottom: 15px; font-weight: 600; line-height: 1.3; }
+        .club-desc { color: #555; font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+        
+        .join-club-btn {
+            align-self: flex-start;
+            color: var(--primary-color);
+            font-weight: 600;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+        .club-card:hover .join-club-btn { color: #2255b3; }
+
+        /* Student Council Section */
+        .council-section {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 80px;
+            box-shadow: var(--soft-shadow);
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, #1a4da6 100%);
+        }
+        
+        .council-text { flex: 1; }
+        .council-text h2 { color: var(--secondary-color); font-size: 2.2rem; margin-bottom: 20px; }
+        .council-text p { font-size: 1.1rem; margin-bottom: 30px; color: #E0E6ED; }
+        
+        .council-btn {
+            background: white;
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .council-btn:hover { background: var(--secondary-color); }
+        
+        .council-image { flex: 1; text-align: center; }
+        .council-image img { width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .clubs-grid { grid-template-columns: repeat(2, 1fr); }
+            .council-section { flex-direction: column; text-align: center; padding: 40px 20px; }
+        }
+        @media (max-width: 768px) {
+            .clubs-grid { grid-template-columns: 1fr; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .life-hero h1 { font-size: 2.5rem; }
+        }
+
+        /* Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 60px;}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="life-hero">
+        <div class="life-hero-content">
+            <h1>ชีวิตในสระบุรีวิทยาคม</h1>
+            <p>การเรียนรู้ไม่ได้จำกัดอยู่แค่ในห้องเรียน ค้นหาความถนัด สร้างสรรค์ผลงาน และใช้ชีวิตในรั้วโรงเรียนให้เต็มที่ไปกับกิจกรรมที่หลากหลาย</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Pillars of Student Life -->
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <span class="pillar-icon">🎨</span>
+                <h3 class="pillar-title">ศิลปะและวัฒนธรรม</h3>
+                <p class="pillar-desc">สืบสานความเป็นไทยและเปิดรับวัฒนธรรมสากล ผ่านชมรมดนตรี นาฏศิลป์ และศิลปะ</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">⚽</span>
+                <h3 class="pillar-title">กีฬาและสุขภาพ</h3>
+                <p class="pillar-desc">ส่งเสริมสุขภาพกายและใจให้แข็งแรง พร้อมสิ่งอำนวยความสะดวกทางกีฬาที่ครบครัน</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">🚀</span>
+                <h3 class="pillar-title">วิชาการและนวัตกรรม</h3>
+                <p class="pillar-desc">พื้นที่ปล่อยของสำหรับนักประดิษฐ์และโปรแกรมเมอร์รุ่นใหม่สู่เวทีระดับชาติ</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">🤝</span>
+                <h3 class="pillar-title">จิตอาสาและผู้นำ</h3>
+                <p class="pillar-desc">ฝึกฝนทักษะการเป็นผู้นำ และทำประโยชน์เพื่อสังคมผ่านกิจกรรมสภานักเรียน</p>
+            </div>
+        </div>
+
+        <!-- Featured Clubs -->
+        <div class="section-header">
+            <h2>กิจกรรมชุมนุมเด่น (Featured Clubs)</h2>
+            <p>เลือกเข้าร่วมชุมนุมที่ตรงกับความสนใจกว่า 40 ชุมนุม เพื่อพัฒนาทักษะ Soft Skills และทำความรู้จักเพื่อนใหม่</p>
+        </div>
+
+        <div class="clubs-grid">
+            
+            <!-- Club 1 -->
+            <div class="club-card">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Robotics Club" class="club-img">
+                <div class="club-info">
+                    <div class="club-category">Technology & Innovation</div>
+                    <h3 class="club-title">ชุมนุมวิทยาการคำนวณและหุ่นยนต์</h3>
+                    <p class="club-desc">รวมกลุ่มผู้หลงใหลในกลไกและการเขียนโปรแกรม ร่วมพัฒนาหุ่นยนต์เพื่อลงแข่งขันรายการ TPA Robot ระดับประเทศ</p>
+                    <a href="#" class="join-club-btn">ดูรายละเอียดชุมนุม →</a>
+                </div>
+            </div>
+
+            <!-- Club 2 -->
+            <div class="club-card">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Investment Club" class="club-img">
+                <div class="club-info">
+                    <div class="club-category">Business & Economics</div>
+                    <h3 class="club-title">ชุมนุมเศรษฐศาสตร์และการลงทุน</h3>
+                    <p class="club-desc">เรียนรู้พื้นฐานการเงิน การวิเคราะห์แนวโน้มตลาด และทดลองทำโมเดลระบบเทรดอัตโนมัติด้วยข้อมูลจำลอง</p>
+                    <a href="#" class="join-club-btn">ดูรายละเอียดชุมนุม →</a>
+                </div>
+            </div>
+
+            <!-- Club 3 -->
+            <div class="club-card">
+                <img src="https://images.unsplash.com/photo-1516280440502-861f6784d161?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Traditional Music Club" class="club-img">
+                <div class="club-info">
+                    <div class="club-category">Arts & Culture</div>
+                    <h3 class="club-title">ชุมนุมดนตรีพื้นบ้านและศิลปะการแสดง</h3>
+                    <p class="club-desc">อนุรักษ์สืบสานมรดกทางวัฒนธรรม ทั้งดนตรีไทยพื้นบ้าน หมอลำ และการแสดงที่แสดงถึงเอกลักษณ์ท้องถิ่น</p>
+                    <a href="#" class="join-club-btn">ดูรายละเอียดชุมนุม →</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Student Council Callout -->
+        <div class="council-section">
+            <div class="council-text">
+                <h2>คณะกรรมการสภานักเรียน</h2>
+                <p>สภานักเรียนโรงเรียนสระบุรีวิทยาคม คือตัวแทนกระบอกเสียงของนักเรียนทุกคน มีหน้าที่พิทักษ์สิทธิ จัดกิจกรรมสร้างสรรค์ และเป็นตัวกลางในการเชื่อมความสัมพันธ์ระหว่างคณะครูและนักเรียน</p>
+                <a href="#" class="council-btn">ทำความรู้จักคณะกรรมการปีล่าสุด</a>
+            </div>
+            <div class="council-image">
+                <!-- รูปภาพจำลองกิจกรรมสภานักเรียน -->
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Student Council">
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

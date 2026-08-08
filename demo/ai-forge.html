@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI Forge | RPG Coding Sandbox โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --dark-bg: #0B132B; /* สีพื้นหลังสไตล์ Tech/Coding */
+            --card-bg: #1C2541;
+            --text-light: #E0E6ED;
+            --accent-glow: 0 0 15px rgba(255, 194, 14, 0.4);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--dark-bg); color: var(--text-light); line-height: 1.6; }
+        a { text-decoration: none; }
+        
+        /* Font สำหรับโค้ดดิ้ง */
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        /* Global Header (ปรับเป็น Dark Mode) */
+        .global-header {
+            background-color: rgba(11, 19, 43, 0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--secondary-color); color: var(--dark-bg); width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: transparent; color: var(--secondary-color); border: 2px solid var(--secondary-color); padding: 8px 24px; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-portal:hover { background-color: var(--secondary-color); color: var(--dark-bg); box-shadow: var(--accent-glow); }
+
+        /* Hero Section */
+        .forge-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #1C2541 0%, #0B132B 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* สร้าง Grid Pattern บางๆ เป็นพื้นหลัง */
+        .forge-hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .badge { display: inline-block; background: rgba(255, 194, 14, 0.1); color: var(--secondary-color); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; border: 1px solid rgba(255, 194, 14, 0.3); }
+        .forge-hero h1 { font-size: 4rem; color: #fff; margin-bottom: 20px; line-height: 1.1; letter-spacing: 1px; }
+        .forge-hero h1 span { color: var(--secondary-color); }
+        .forge-hero p { font-size: 1.2rem; color: #A0B2C6; margin-bottom: 40px; }
+        
+        .start-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: var(--accent-glow);
+        }
+        .start-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 194, 14, 0.6); }
+
+        /* Stages Section (6 Stages) */
+        .stages-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.2rem; color: #fff; margin-bottom: 15px; }
+        .section-title p { color: #A0B2C6; max-width: 600px; margin: 0 auto; }
+
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .stage-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .stage-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .stage-num {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+        }
+
+        .stage-icon { font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary-color); }
+        .stage-card h3 { color: #fff; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600; }
+        .stage-card p { color: #A0B2C6; font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .tech-stack {
+            display: flex; gap: 8px; flex-wrap: wrap;
+        }
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--secondary-color);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Destination Section (TPA Robot) */
+        .destination-section {
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .dest-content { max-width: 800px; margin: 0 auto; }
+        .dest-content h2 { color: #fff; font-size: 2rem; margin-bottom: 20px; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .stages-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .forge-hero h1 { font-size: 3rem; }
+            .stages-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">← กลับสู่เมนูหลัก</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="forge-hero">
+        <div class="hero-content">
+            <div class="badge code-font">v2.0_Online_Learning_Ecosystem</div>
+            <h1>The <span>AI Forge</span></h1>
+            <p>แพลตฟอร์มการเรียนรู้รูปแบบ RPG Coding Sandbox พัฒนาทักษะกระบวนการคิดเชิงคำนวณ (Computational Thinking) ฝ่าด่านทดสอบและสร้างสรรค์นวัตกรรมสู่อนาคต</p>
+            <a href="#" class="start-btn">>> START_ADVENTURE()</a>
+        </div>
+    </section>
+
+    <!-- 6 Stages of Mastery -->
+    <section class="stages-section">
+        <div class="section-title">
+            <h2 class="code-font">6 Stages of Mastery</h2>
+            <p>เส้นทางการเรียนรู้ที่ถูกออกแบบมาเพื่อบ่มเพาะโปรแกรมเมอร์และนักพัฒนานวัตกรรมรุ่นใหม่ ตั้งแต่พื้นฐานไปจนถึงระดับการแข่งขัน</p>
+        </div>
+
+        <div class="stages-grid">
+            
+            <!-- Stage 1 -->
+            <div class="stage-card">
+                <div class="stage-num">01</div>
+                <div class="stage-icon">🐍</div>
+                <h3>Logic & Syntax</h3>
+                <p>ปูพื้นฐานตรรกะการเขียนโปรแกรม โครงสร้างข้อมูล และอัลกอริทึมเบื้องต้น ผ่านการแก้โจทย์ปัญหา (Problem Solving)</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Algorithms</span>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="stage-card">
+                <div class="stage-num">02</div>
+                <div class="stage-icon">⚡</div>
+                <h3>Frontend Architecture</h3>
+                <p>เรียนรู้การสร้างส่วนติดต่อผู้ใช้งาน (UI) แบบโต้ตอบได้ การจัดการ State และการออกแบบคอมโพเนนต์ที่ทันสมัย</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">HTML/CSS</span>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="stage-card">
+                <div class="stage-num">03</div>
+                <div class="stage-icon">🔥</div>
+                <h3>Backend & Database</h3>
+                <p>เชื่อมต่อระบบเข้ากับฐานข้อมูลแบบ Real-time เรียนรู้การจัดการข้อมูลผู้ใช้ และระบบยืนยันตัวตน</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">NoSQL</span>
+                </div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="stage-card">
+                <div class="stage-num">04</div>
+                <div class="stage-icon">🧠</div>
+                <h3>AI & Machine Learning</h3>
+                <p>ทำความเข้าใจหลักการทำงานของปัญญาประดิษฐ์ การเทรนโมเดลเบื้องต้น และการประยุกต์ใช้ AI ในการประมวลผลข้อมูล</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">AI Models</span>
+                    <span class="tech-tag">Data Science</span>
+                </div>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="stage-card">
+                <div class="stage-num">05</div>
+                <div class="stage-icon">🚑</div>
+                <h3>Robo Rescue (TPA)</h3>
+                <p>จำลองสถานการณ์และเขียนโปรแกรมควบคุมหุ่นยนต์กู้ภัยอัตโนมัติ เพื่อเตรียมความพร้อมสำหรับการแข่งขันระดับประเทศ</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Robotics</span>
+                    <span class="tech-tag">Sensors</span>
+                </div>
+            </div>
+
+            <!-- Stage 6 -->
+            <div class="stage-card">
+                <div class="stage-num">06</div>
+                <div class="stage-icon">⚽</div>
+                <h3>Robo Soccer (TPA)</h3>
+                <p>ขั้นสุดของการบูรณาการ! ออกแบบและควบคุมหุ่นยนต์เตะฟุตบอล ที่ต้องใช้ทั้งความแม่นยำของฮาร์ดแวร์และการตัดสินใจของซอฟต์แวร์</p>
+                <div class="tech-stack code-font">
+                    <span class="tech-tag">Automation</span>
+                    <span class="tech-tag">Mechanics</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Destination Section -->
+    <section class="destination-section">
+        <div class="dest-content">
+            <h2>จากห้องเรียนสู่สนามแข่งระดับประเทศ</h2>
+            <p style="color: #A0B2C6; font-size: 1.1rem; margin-bottom: 30px;">
+                ผู้ที่ผ่านการทดสอบใน The AI Forge จะได้รับการพิจารณาคัดเลือกเป็นตัวแทนโรงเรียนสระบุรีวิทยาคม<br>
+                เข้าร่วมการแข่งขันหุ่นยนต์ <strong>TPA Robot (สมาคมส่งเสริมเทคโนโลยี ไทย-ญี่ปุ่น)</strong> ประจำปี
+            </p>
+            <a href="#" style="color: var(--secondary-color); font-weight: 600; text-decoration: underline;">ดูทำเนียบผลงานรุ่นพี่ที่ผ่านมา</a>
+        </div>
+    </section>
+
+</body>
+</html>

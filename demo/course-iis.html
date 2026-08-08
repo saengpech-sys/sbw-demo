@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายวิชาระบบสารสนเทศเพื่อการลงทุน | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Header */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; }
+
+        /* Course Hero Section */
+        .course-hero {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 5%;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.95), rgba(18, 56, 128, 0.95)), url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .course-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .course-title-area { max-width: 700px; }
+        .course-badge { background-color: rgba(255, 194, 14, 0.2); color: var(--secondary-color); padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; margin-bottom: 15px; display: inline-block; border: 1px solid var(--secondary-color); }
+        .course-title-area h1 { font-size: 2.8rem; margin-bottom: 15px; line-height: 1.2; }
+        .course-title-area p { font-size: 1.1rem; color: #E0E6ED; margin-bottom: 0; }
+
+        /* Main Content Layout (LMS Style) */
+        .course-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 40px;
+        }
+
+        /* Left Column: Syllabus & Details */
+        .course-main {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .course-section-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bg-color);
+        }
+
+        .course-desc {
+            color: #444;
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            text-align: justify;
+        }
+
+        /* Syllabus Grid */
+        .syllabus-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .module-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        .module-card:hover {
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .module-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .module-hours {
+            background-color: var(--bg-color);
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .module-content {
+            color: #555;
+            font-size: 0.95rem;
+            padding-left: 20px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        /* Right Column: Course Info Sidebar */
+        .course-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-widget {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .info-list { list-style: none; }
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .info-list li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .info-label { color: #666; font-size: 0.9rem; }
+        .info-value { color: var(--primary-color); font-weight: 600; font-size: 0.95rem; text-align: right; }
+
+        .enroll-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .enroll-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 194, 14, 0.4); }
+
+        /* Tech Stack Labels */
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .tech-tag {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #ddd;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .course-container { grid-template-columns: 1fr; }
+            .course-hero-content { flex-direction: column; align-items: flex-start; }
+        }
+
+        /* Global Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 40px;}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Course Hero Section -->
+    <section class="course-hero">
+        <div class="course-hero-content">
+            <div class="course-title-area">
+                <span class="course-badge">กลุ่มวิชาเพิ่มเติม: วิทยาศาสตร์และเทคโนโลยี</span>
+                <h1>ระบบสารสนเทศเพื่อการลงทุน (Investment Information Systems)</h1>
+                <p>บูรณาการวิทยาการคอมพิวเตอร์และสถิติเข้ากับความรู้ทางการเงิน เพื่อพัฒนาระบบเทรดอัตโนมัติ (Python Trading Bot) ด้วยข้อมูลแบบ Real-time</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="course-container">
+        
+        <!-- Left: Course Details & Syllabus -->
+        <div class="course-main">
+            <h2 class="course-section-title">คำอธิบายรายวิชา (Course Overview)</h2>
+            <p class="course-desc">
+                รายวิชา 40 ชั่วโมงที่ออกแบบมาสำหรับนักเรียนชั้นมัธยมศึกษาปีที่ 6 มุ่งเน้นการเสริมสร้างทักษะความฉลาดทางการเงิน (Financial Literacy) ควบคู่ไปกับทักษะการเขียนโปรแกรม ผู้เรียนจะได้เรียนรู้การดึงข้อมูลสถิติย้อนหลัง การเชื่อมต่อ API ของระบบสารสนเทศการลงทุน และการทำ Backtest เพื่อประเมินความเสี่ยงและพัฒนาระบบอัลกอริทึมเทรดดิ้ง (Algorithmic Trading) ด้วยตนเอง
+            </p>
+
+            <h2 class="course-section-title">โครงสร้างเนื้อหา (Course Syllabus)</h2>
+            <div class="syllabus-grid">
+                
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">Unit 1: Financial Literacy & Market Data</div>
+                        <div class="module-hours">8 ชั่วโมง</div>
+                    </div>
+                    <div class="module-content">
+                        ทำความเข้าใจกลไกตลาดการเงินเบื้องต้น ความเสี่ยงทางการเงิน วินัยการลงทุน และการวิเคราะห์ข้อมูลทางสถิติ (Statistical Data) เพื่อใช้ประกอบการตัดสินใจ
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">Unit 2: Python for Data Analysis</div>
+                        <div class="module-hours">12 ชั่วโมง</div>
+                    </div>
+                    <div class="module-content">
+                        ทบทวนการเขียนโปรแกรมภาษา Python และการใช้ไลบรารีสำหรับการจัดการข้อมูล (Pandas, NumPy) เพื่อวิเคราะห์แนวโน้มและสร้าง Data Visualization
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">Unit 3: API Integration & System Architecture</div>
+                        <div class="module-hours">10 ชั่วโมง</div>
+                    </div>
+                    <div class="module-content">
+                        การตั้งค่า API Integrations เพื่อดึงข้อมูลราคาแบบ Real-time เข้าสู่ระบบ และทำความเข้าใจโครงสร้างคำสั่งในการส่งข้อมูล
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">Unit 4: Trading Bot Development & Backtesting</div>
+                        <div class="module-hours">10 ชั่วโมง</div>
+                    </div>
+                    <div class="module-content">
+                        พัฒนาระบบเทรดอัตโนมัติ (Trading Bot) พร้อมการทดสอบระบบด้วยข้อมูลย้อนหลัง (Backtests) เพื่อวัดประสิทธิภาพและปรับปรุงอัลกอริทึม
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right: Course Information Sidebar -->
+        <aside class="course-sidebar">
+            <div class="info-widget">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.2rem;">ข้อมูลรายวิชา</h3>
+                <ul class="info-list">
+                    <li>
+                        <span class="info-label">ระดับชั้น</span>
+                        <span class="info-value">มัธยมศึกษาปีที่ 6</span>
+                    </li>
+                    <li>
+                        <span class="info-label">เวลาเรียน</span>
+                        <span class="info-value">40 ชั่วโมง / ภาคเรียน</span>
+                    </li>
+                    <li>
+                        <span class="info-label">ประเภทวิชา</span>
+                        <span class="info-value">วิชาเพิ่มเติม</span>
+                    </li>
+                    <li>
+                        <span class="info-label">การประเมินผล</span>
+                        <span class="info-value">Project-based</span>
+                    </li>
+                </ul>
+                
+                <a href="#" class="enroll-btn">ดูรายชื่อผู้มีสิทธิ์เรียน</a>
+                
+                <div style="margin-top: 30px;">
+                    <span class="info-label" style="display: block; margin-bottom: 10px;">เครื่องมือและเทคโนโลยี (Tech Stack)</span>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Data API</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Statistics</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

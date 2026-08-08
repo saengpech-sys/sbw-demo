@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทำเนียบและบุคลากร | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 15px; /* ปรับให้โค้งมนมากขึ้นสำหรับ Card */
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.06);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15); /* เงาเมื่อ Hover */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Global Header (ย่อส่วน) */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.9), rgba(18, 56, 128, 0.9)), url('https://via.placeholder.com/1920x400');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-section h1 { color: var(--secondary-color); font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* Template 3: โครงสร้างและ Grid */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .department-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .department-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Divi Row 1/4 + 1/4 + 1/4 + 1/4 */
+        .personnel-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Divi Person Module (Card) */
+        .person-card {
+            background-color: #ffffff;
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Hover Effect: การ์ดเด้งขึ้นและเงาชัดขึ้น */
+        .person-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* ตั้งค่ารูปโปรไฟล์ให้เป็นวงกลม */
+        .person-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid var(--bg-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .person-card:hover .person-image {
+            border-color: var(--secondary-color);
+        }
+
+        .person-name {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .person-position {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        /* Responsive Settings สำหรับ Tablet และ Mobile */
+        @media (max-width: 992px) {
+            .personnel-grid {
+                grid-template-columns: repeat(3, 1fr); /* Tablet: 3 คอลัมน์ */
+            }
+        }
+        @media (max-width: 768px) {
+            .personnel-grid {
+                grid-template-columns: repeat(2, 1fr); /* Mobile ใหญ่: 2 คอลัมน์ */
+            }
+        }
+        @media (max-width: 480px) {
+            .personnel-grid {
+                grid-template-columns: 1fr; /* Mobile เล็ก: 1 คอลัมน์ */
+            }
+        }
+
+        /* Global Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>ทำเนียบผู้บริหารและบุคลากร</h1>
+        <p>Executives and Personnel Directory</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- หมวดหมู่: คณะผู้บริหาร -->
+        <h2 class="department-title">คณะผู้บริหาร</h2>
+        <div class="personnel-grid">
+            <!-- บุคคลที่ 1 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Director" alt="ผู้อำนวยการ" class="person-image">
+                <h3 class="person-name">นายตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">ผู้อำนวยการโรงเรียนสระบุรีวิทยาคม</p>
+            </div>
+            <!-- บุคคลที่ 2 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Deputy" alt="รองผู้อำนวยการ" class="person-image">
+                <h3 class="person-name">นางสาวตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">รองผู้อำนวยการกลุ่มบริหารวิชาการ</p>
+            </div>
+            <!-- บุคคลที่ 3 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Deputy" alt="รองผู้อำนวยการ" class="person-image">
+                <h3 class="person-name">นายตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">รองผู้อำนวยการกลุ่มบริหารทั่วไป</p>
+            </div>
+            <!-- บุคคลที่ 4 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Deputy" alt="รองผู้อำนวยการ" class="person-image">
+                <h3 class="person-name">นางตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">รองผู้อำนวยการกลุ่มบริหารงบประมาณ</p>
+            </div>
+        </div>
+
+        <!-- หมวดหมู่: กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี -->
+        <h2 class="department-title">กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี</h2>
+        <div class="personnel-grid">
+            <!-- บุคคลที่ 5 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Teacher" alt="ครู" class="person-image">
+                <h3 class="person-name">นายตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">หัวหน้ากลุ่มสาระการเรียนรู้</p>
+            </div>
+            <!-- บุคคลที่ 6 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Teacher" alt="ครู" class="person-image">
+                <h3 class="person-name">นายตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">ครูชำนาญการพิเศษ</p>
+            </div>
+            <!-- บุคคลที่ 7 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Teacher" alt="ครู" class="person-image">
+                <h3 class="person-name">นางสาวตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">ครูชำนาญการ</p>
+            </div>
+            <!-- บุคคลที่ 8 -->
+            <div class="person-card">
+                <img src="https://via.placeholder.com/300x300?text=Teacher" alt="ครู" class="person-image">
+                <h3 class="person-name">นายตัวอย่าง นามสกุลสมมติ</h3>
+                <p class="person-position">ครูผู้สอน</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

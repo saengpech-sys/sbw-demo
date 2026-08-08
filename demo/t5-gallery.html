@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คลังภาพและกิจกรรม | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Global Header (ย่อส่วน) */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.9), rgba(18, 56, 128, 0.9)), url('https://via.placeholder.com/1920x400');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-section h1 { color: var(--secondary-color); font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* Template 5: Gallery Layout */
+        .container-fluid {
+            max-width: 1400px; /* ใช้ความกว้างเกือบเต็มจอแบบ Fullwidth Row */
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .gallery-header h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        /* Divi Gallery Module (Grid Layout) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* เริ่มต้นที่ 4 คอลัมน์ */
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            aspect-ratio: 4/3; /* ควบคุมสัดส่วนรูปภาพให้เท่ากันทุกรูป */
+            background-color: #ddd;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        /* Hover Overlay Effect (จำลองลูกเล่นของ Divi) */
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(18, 56, 128, 0.7); /* สีน้ำเงินโปร่งแสง */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-overlay span {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            transform: scale(0.5);
+            transition: transform 0.3s ease;
+        }
+
+        /* เมื่อเอาเมาส์ชี้รูปภาพ */
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1); /* ซูมรูปภาพ */
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1; /* แสดง Overlay */
+        }
+        .gallery-item:hover .gallery-overlay span {
+            transform: scale(1); /* เด้งไอคอนแว่นขยาย/บวก ขึ้นมา */
+        }
+
+        /* Lightbox (Modal สำหรับขยายภาพ) */
+        .lightbox-modal {
+            display: none; /* ซ่อนไว้เป็นค่าเริ่มต้น */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Global Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>คลังภาพและกิจกรรม</h1>
+        <p>Media & Photo Gallery</p>
+    </section>
+
+    <!-- Main Content (Fullwidth Gallery) -->
+    <main class="container-fluid">
+        
+        <div class="gallery-header">
+            <h2>ประมวลภาพกิจกรรมเด่น ประจำปีการศึกษา 2568</h2>
+            <p style="color: #666; margin-top: 5px;">คลิกที่รูปภาพเพื่อขยายขนาด (Lightbox View)</p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- สร้างไอเทมแกลเลอรี 8 รูป พร้อมฟังก์ชัน onclick -->
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Activity+1')">
+                <img src="https://via.placeholder.com/600x450?text=Activity+1" alt="ภาพกิจกรรม 1" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Activity+2')">
+                <img src="https://via.placeholder.com/600x450?text=Activity+2" alt="ภาพกิจกรรม 2" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Activity+3')">
+                <img src="https://via.placeholder.com/600x450?text=Activity+3" alt="ภาพกิจกรรม 3" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Activity+4')">
+                <img src="https://via.placeholder.com/600x450?text=Activity+4" alt="ภาพกิจกรรม 4" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Robotics+Competition')">
+                <img src="https://via.placeholder.com/600x450?text=Robotics+Competition" alt="การแข่งขันหุ่นยนต์" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Sports+Day')">
+                <img src="https://via.placeholder.com/600x450?text=Sports+Day" alt="กีฬาสี" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Coding+Camp')">
+                <img src="https://via.placeholder.com/600x450?text=Coding+Camp" alt="ค่ายโค้ดดิ้ง" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/1200x900?text=Study+Trip')">
+                <img src="https://via.placeholder.com/600x450?text=Study+Trip" alt="ทัศนศึกษา" class="gallery-img">
+                <div class="gallery-overlay"><span>🔍</span></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Lightbox Modal (ส่วนที่ซ่อนไว้สำหรับเด้งขยายภาพ) -->
+    <div class="lightbox-modal" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Expanded Image" class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+    <!-- JavaScript สำหรับควบคุมการเปิด/ปิด Lightbox -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // ฟังก์ชันเปิด Lightbox พร้อมรับ URL ของรูปภาพ
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // ป้องกันการ Scroll หน้าเว็บตอนเปิด Lightbox
+        }
+
+        // ฟังก์ชันปิด Lightbox เมื่อคลิกพื้นหลังดำ หรือปุ่มกากบาท
+        function closeLightbox(event) {
+            // เช็คว่าคลิกที่พื้นหลังหรือปุ่มปิด (ไม่ใช่การคลิกที่ตัวรูปภาพโดยตรง)
+            if (event.target.id === 'lightbox' || event.target.className === 'lightbox-close') {
+                lightbox.classList.remove('active');
+                lightboxImg.src = ''; // เคลียร์รูปภาพ
+                document.body.style.overflow = 'auto'; // คืนค่าการ Scroll หน้าเว็บ
+            }
+        }
+    </script>
+</body>
+</html>

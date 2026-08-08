@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ศูนย์ช่วยเหลือและคำถามที่พบบ่อย (FAQ) | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Header */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: transform 0.2s; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* Help Center Hero */
+        .help-hero {
+            background-color: var(--primary-color);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            background-image: radial-gradient(circle at center, #1b4b9c 0%, #123880 100%);
+        }
+        .help-hero h1 { font-size: 2.8rem; margin-bottom: 15px; color: var(--secondary-color); }
+        .help-hero p { font-size: 1.1rem; color: #E0E6ED; margin-bottom: 30px; }
+        
+        /* Search Bar ใน Hero */
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            background: white;
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .search-box input {
+            flex-grow: 1;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            outline: none;
+        }
+        .search-box button {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-box button:hover { background: #e5ad00; }
+
+        /* Main Container */
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+
+        /* Category Filter */
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .cat-btn {
+            background: white;
+            color: var(--primary-color);
+            border: 1px solid #ddd;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #eaeaea;
+        }
+        
+        .faq-question {
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+        .faq-question:hover { background-color: #f8fbff; }
+        
+        .faq-question.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .toggle-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+        .faq-question.active .toggle-icon { transform: rotate(45deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: white;
+            color: #555;
+            line-height: 1.7;
+        }
+        .faq-answer-inner { padding: 25px 30px; }
+        .faq-answer-inner p { margin-bottom: 10px; }
+        .faq-answer-inner p:last-child { margin-bottom: 0; }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: var(--soft-shadow);
+            border-top: 4px solid var(--secondary-color);
+        }
+        .contact-cta h3 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 10px; }
+        .contact-cta p { color: #666; margin-bottom: 25px; }
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .cta-btn:hover { background: #0c2657; }
+
+        /* Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 60px;}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="help-hero">
+        <h1>ศูนย์ช่วยเหลือ (Help Center)</h1>
+        <p>เรามีคำตอบสำหรับคำถามที่คุณสงสัย ค้นหาข้อมูลที่ต้องการได้ทันที</p>
+        
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" placeholder="พิมพ์คำถาม เช่น สมัครเรียน, ขอย้ายห้อง, ขอใบ ปพ.1...">
+            <button>ค้นหา</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Category Tabs -->
+        <div class="faq-categories">
+            <button class="cat-btn active">ทั้งหมด</button>
+            <button class="cat-btn">การรับสมัคร (Admissions)</button>
+            <button class="cat-btn">วิชาการและการเรียน</button>
+            <button class="cat-btn">เอกสารและธุรการ</button>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="faq-list">
+            
+            <!-- Item 1 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>กำหนดการรับสมัครนักเรียนชั้น ม.1 และ ม.4 เริ่มเมื่อไหร่?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>โดยปกติแล้ว โรงเรียนสระบุรีวิทยาคมจะเริ่มเปิดรับสมัครห้องเรียนพิเศษในช่วงเดือน <strong>กุมภาพันธ์</strong> และห้องเรียนปกติในช่วงเดือน <strong>มีนาคม</strong> ของทุกปีการศึกษา</p>
+                        <p>ผู้ปกครองสามารถติดตามประกาศรับสมัครอย่างเป็นทางการได้ผ่านหน้าเว็บไซต์หลักในส่วน "ข่าวประชาสัมพันธ์" หรือที่เมนู "รับสมัครนักเรียนใหม่" ครับ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>ขั้นตอนการขอใบแสดงผลการเรียน (ปพ.1) ต้องทำอย่างไร?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>นักเรียนหรือผู้ปกครองสามารถดำเนินการได้ 2 ช่องทาง:</p>
+                        <ul style="margin-left: 20px;">
+                            <li><strong>ช่องทางออนไลน์:</strong> เข้าสู่ระบบ Portals ของนักเรียน เลือกเมนู "คำร้องขอเอกสารทางการศึกษา"</li>
+                            <li><strong>ติดต่อที่โรงเรียน:</strong> ยื่นคำร้องได้ที่ห้องวิชาการ อาคาร 1 ในวันและเวลาราชการ พร้อมเตรียมรูปถ่ายชุดนักเรียนขนาด 1.5 นิ้ว จำนวน 2 รูป (ใช้เวลาดำเนินการประมาณ 3 วันทำการ)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>โครงการ The AI Forge ใครสามารถใช้งานได้บ้าง?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>The AI Forge เป็นแพลตฟอร์มการเรียนรู้ที่สงวนสิทธิ์สำหรับ <strong>นักเรียนโรงเรียนสระบุรีวิทยาคมทุกคน</strong> โดยนักเรียนสามารถใช้บัญชีอีเมล @sbw.ac.th ของโรงเรียนในการเข้าสู่ระบบ (Sign in with Google) เพื่อเรียนรู้และเก็บสะสมคะแนนได้ทันทีผ่านระบบ Portals</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>การแต่งกายชุดลูกเสือ-เนตรนารี ต้องใส่ในวันไหน?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>สำหรับนักเรียนระดับชั้นมัธยมศึกษาตอนต้น (ม.1 - ม.3) กำหนดให้แต่งกายด้วยชุดลูกเสือ-เนตรนารี ใน <strong>วันพฤหัสบดี</strong> ของทุกสัปดาห์ เว้นแต่จะมีประกาศเปลี่ยนแปลงจากทางโรงเรียนเป็นกรณีพิเศษ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>ต้องการแจ้งเด็กนักเรียนลากิจ/ลาป่วย ต้องทำอย่างไร?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>ผู้ปกครองสามารถแจ้งลาได้ผ่าน <strong>ระบบผู้ปกครอง (Parent Portal)</strong> หรือโทรแจ้งคุณครูที่ปรึกษาโดยตรง จากนั้นให้นักเรียนนำใบลาที่มีลายเซ็นผู้ปกครองมาส่งให้ครูที่ปรึกษาในวันที่กลับมาเรียนตามปกติ</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Still Need Help CTA -->
+        <div class="contact-cta">
+            <h3>ยังไม่พบคำตอบที่คุณตามหาใช่ไหม?</h3>
+            <p>ติดต่อสอบถามเจ้าหน้าที่ธุรการ หรือฝากข้อความไว้ในระบบเพื่อให้เราติดต่อกลับ</p>
+            <a href="#" class="cta-btn">✉ ไปที่หน้าติดต่อเรา</a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+    <!-- JavaScript for Accordion Functionality -->
+    <script>
+        function toggleFaq(element) {
+            // ค้นหาคำถามทั้งหมดที่เปิดอยู่
+            const allQuestions = document.querySelectorAll('.faq-question');
+            
+            // วนลูปเพื่อปิดคำถามอื่นที่ไม่ได้คลิก (ทำให้เปิดได้ทีละ 1 ข้อ)
+            allQuestions.forEach(question => {
+                if (question !== element && question.classList.contains('active')) {
+                    question.classList.remove('active');
+                    question.nextElementSibling.style.maxHeight = '0';
+                    question.nextElementSibling.style.padding = '0';
+                }
+            });
+
+            // เปิด/ปิด คำถามที่ถูกคลิก
+            element.classList.toggle('active');
+            const answer = element.nextElementSibling;
+            
+            if (element.classList.contains('active')) {
+                // คำนวณความสูงจริงของเนื้อหาเพื่อทำแอนิเมชันกางออก
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                // หุบเนื้อหาเก็บ
+                answer.style.maxHeight = '0';
+            }
+        }
+    </script>
+</body>
+</html>

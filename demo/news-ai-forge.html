@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เปิดตัวแพลตฟอร์มการเรียนรู้ The AI Forge | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.7; }
+        a { text-decoration: none; color: var(--primary-color); }
+        a:hover { color: var(--secondary-color); }
+
+        /* Global Header (ย่อส่วน) */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; }
+
+        /* Post Layout (2/3 + 1/3) */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr; /* แบ่งพื้นที่ เนื้อหาหลัก และ Sidebar */
+            gap: 40px;
+        }
+
+        /* -------------------------------------------
+           ฝั่งซ้าย: เนื้อหาข่าว (Post Content Module)
+        ------------------------------------------- */
+        .post-content-area {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .post-category {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .post-title {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            object-fit: cover;
+            aspect-ratio: 16/9;
+        }
+
+        .post-body p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #444;
+            text-align: justify;
+        }
+
+        .post-body h3 {
+            color: var(--primary-color);
+            margin: 30px 0 15px;
+            font-size: 1.4rem;
+        }
+
+        .post-body ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .post-body ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Share Buttons */
+        .share-buttons {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .share-btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .share-fb { background-color: #1877F2; }
+        .share-line { background-color: #00B900; }
+
+        /* -------------------------------------------
+           ฝั่งขวา: Sidebar Module
+        ------------------------------------------- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .widget {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .widget-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        /* Recent Posts Widget */
+        .recent-post-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .recent-post-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .recent-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .recent-info h4 {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+        
+        .recent-info h4 a {
+            color: #333;
+            transition: color 0.2s;
+        }
+        .recent-info h4 a:hover {
+            color: var(--primary-color);
+        }
+        
+        .recent-date {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Categories Widget */
+        .cat-list {
+            list-style: none;
+        }
+        .cat-list li {
+            margin-bottom: 12px;
+        }
+        .cat-list a {
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+        }
+        .cat-list a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+            transition: all 0.2s ease;
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 992px) {
+            .container { grid-template-columns: 1fr; } /* ยุบ Sidebar ลงไปอยู่ด้านล่างบน Tablet/Mobile */
+        }
+
+        /* Global Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 40px;}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        
+        <!-- Post Content (Dynamic Title & Body) -->
+        <article class="post-content-area">
+            
+            <!-- Meta Data (Divi Post Title Module) -->
+            <div class="post-meta">
+                <span class="post-category">ข่าววิชาการ</span>
+                <span>📅 15 พฤษภาคม 2569</span>
+                <span>👤 แอดมินโรงเรียน</span> <!-- สามารถซ่อนได้ตามข้อกำหนด -->
+            </div>
+
+            <!-- Title -->
+            <h1 class="post-title">เปิดตัวแพลตฟอร์มการเรียนรู้ "The AI Forge" ยกระดับทักษะการเขียนโปรแกรมสำหรับนักเรียน</h1>
+
+            <!-- Featured Image -->
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="The AI Forge Platform" class="featured-image">
+
+            <!-- Body Text (Divi Post Content Module) -->
+            <div class="post-body">
+                <p>กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี โรงเรียนสระบุรีวิทยาคม เดินหน้ายกระดับการจัดการเรียนการสอนสู่อนาคต ด้วยการเปิดตัวระบบนิเวศการเรียนรู้รูปแบบใหม่ภายใต้ชื่อ <strong>"The AI Forge"</strong> ซึ่งเป็นแพลตฟอร์มการเรียนรู้แบบออนไลน์ที่ถูกออกแบบมาในลักษณะของ RPG Coding Sandbox เพื่อกระตุ้นความสนใจและสร้างความท้าทายให้กับผู้เรียน</p>
+                
+                <h3>โครงสร้างและการเรียนรู้</h3>
+                <p>ระบบ The AI Forge ประกอบไปด้วยด่านการเรียนรู้ (Stages) ทั้งสิ้น 6 ระดับ โดยนักเรียนจะได้ฝึกฝนทักษะกระบวนการคิดเชิงคำนวณ (Computational Thinking) ผ่านการเขียนโปรแกรมและแก้ปัญหาอย่างเป็นระบบ ซึ่งแพลตฟอร์มนี้รองรับการเรียนรู้เครื่องมือสมัยใหม่ที่สอดคล้องกับความต้องการของภาคอุตสาหกรรมเทคโนโลยี</p>
+                
+                <ul>
+                    <li>การฝึกฝนเขียนโปรแกรมด้วยภาษา Python เบื้องต้นจนถึงระดับกลาง</li>
+                    <li>การทำความเข้าใจโครงสร้างและตรรกะของระบบปัญญาประดิษฐ์ (AI)</li>
+                    <li>การพัฒนาส่วนหน้าของแอปพลิเคชัน (Frontend) ด้วย Vue.js</li>
+                </ul>
+
+                <p>นอกจากนี้ โครงการดังกล่าวยังเป็นการเตรียมความพร้อมให้กับตัวแทนนักเรียนที่จะเข้าร่วมการแข่งขันหุ่นยนต์เยาวชนระดับประเทศ (TPA Robot) ในหมวด Robo Rescue และ Robo Soccer เพื่อสร้างชื่อเสียงให้กับโรงเรียนต่อไป</p>
+                
+                <p>นักเรียนที่สนใจสามารถเข้าสู่ระบบผ่าน Portals ของโรงเรียน โดยใช้บัญชีอีเมล @sbw.ac.th เพื่อเริ่มต้นการผจญภัยในโลกแห่งโค้ดดิ้งได้ตั้งแต่วันนี้เป็นต้นไป</p>
+            </div>
+
+            <!-- Share Options -->
+            <div class="share-buttons">
+                <strong>แชร์ข่าวนี้:</strong>
+                <button class="share-btn share-fb">Facebook</button>
+                <button class="share-btn share-line">LINE</button>
+            </div>
+
+        </article>
+
+        <!-- Sidebar (Divi Sidebar Module) -->
+        <aside class="sidebar">
+            
+            <!-- Widget: Recent Posts -->
+            <div class="widget">
+                <h3 class="widget-title">ข่าวสารล่าสุด</h3>
+                
+                <div class="recent-post-item">
+                    <img src="https://via.placeholder.com/150x150?text=News" alt="Thumb" class="recent-img">
+                    <div class="recent-info">
+                        <h4><a href="#">ร่วมส่งแรงเชียร์ทีมนักเรียนในการแข่งขัน TPA Robot</a></h4>
+                        <div class="recent-date">12 พฤษภาคม 2569</div>
+                    </div>
+                </div>
+
+                <div class="recent-post-item">
+                    <img src="https://via.placeholder.com/150x150?text=News" alt="Thumb" class="recent-img">
+                    <div class="recent-info">
+                        <h4><a href="#">ประกาศรายชื่อผู้มีสิทธิ์สอบคัดเลือกเข้าศึกษาต่อ ม.1 และ ม.4</a></h4>
+                        <div class="recent-date">5 พฤษภาคม 2569</div>
+                    </div>
+                </div>
+
+                <div class="recent-post-item">
+                    <img src="https://via.placeholder.com/150x150?text=News" alt="Thumb" class="recent-img">
+                    <div class="recent-info">
+                        <h4><a href="#">ประมวลภาพการอบรมเชิงปฏิบัติการพัฒนาแอปพลิเคชัน</a></h4>
+                        <div class="recent-date">28 เมษายน 2569</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget: Categories -->
+            <div class="widget">
+                <h3 class="widget-title">หมวดหมู่ข่าวสาร</h3>
+                <ul class="cat-list">
+                    <li><a href="#">ข่าวประชาสัมพันธ์ <span>(14)</span></a></li>
+                    <li><a href="#">ข่าววิชาการ <span>(8)</span></a></li>
+                    <li><a href="#">ข่าวกิจกรรม <span>(22)</span></a></li>
+                    <li><a href="#">ประกาศจัดซื้อจัดจ้าง <span>(5)</span></a></li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+</body>
+</html>

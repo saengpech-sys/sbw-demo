@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ศูนย์รวมระบบสารสนเทศ (Portals) | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 15px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Global Header (ตัดปุ่ม Portal ออก เพราะอยู่ในหน้านี้แล้ว) */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        
+        .back-to-home { color: var(--primary-color); font-weight: 500; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
+        .back-to-home:hover { color: var(--secondary-color); }
+
+        /* Gateway Container */
+        .gateway-wrapper {
+            min-height: calc(100vh - 70px); /* หักความสูง Header ออก */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #F5F7FA 0%, #E4EBF5 100%);
+        }
+
+        .gateway-container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(18, 56, 128, 0.1);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .gateway-header {
+            margin-bottom: 40px;
+        }
+        .gateway-header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .gateway-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Portals Grid (3 คอลัมน์) */
+        .portals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* Portal Card */
+        .portal-card {
+            background-color: #ffffff;
+            border: 2px solid #f0f0f0;
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* สีประจำแต่ละ Card ให้ดูแยกหมวดหมู่ชัดเจน */
+        .portal-card.student:hover { border-color: #4CAF50; box-shadow: 0 10px 25px rgba(76, 175, 80, 0.15); transform: translateY(-5px); }
+        .portal-card.teacher:hover { border-color: var(--primary-color); box-shadow: var(--hover-shadow); transform: translateY(-5px); }
+        .portal-card.parent:hover { border-color: #FF9800; box-shadow: 0 10px 25px rgba(255, 152, 0, 0.15); transform: translateY(-5px); }
+        .portal-card.aiforge:hover { border-color: #9C27B0; box-shadow: 0 10px 25px rgba(156, 39, 176, 0.15); transform: translateY(-5px); }
+        .portal-card.alumni:hover { border-color: #607D8B; box-shadow: 0 10px 25px rgba(96, 125, 139, 0.15); transform: translateY(-5px); }
+        .portal-card.support:hover { border-color: #F44336; box-shadow: 0 10px 25px rgba(244, 67, 54, 0.15); transform: translateY(-5px); }
+
+        .portal-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .portal-title {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .portal-desc {
+            color: #777;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 992px) {
+            .portals-grid { grid-template-columns: repeat(2, 1fr); }
+            .gateway-container { padding: 40px 30px; }
+        }
+        @media (max-width: 600px) {
+            .portals-grid { grid-template-columns: 1fr; }
+            .gateway-container { padding: 30px 20px; }
+            .gateway-header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (โหมด Gateway จะซ่อนปุ่มเมนูหลัก เพื่อให้ผู้ใช้โฟกัสที่การเข้าระบบ) -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="back-to-home">← กลับหน้าหลัก</a>
+    </header>
+
+    <!-- Gateway Center Content -->
+    <div class="gateway-wrapper">
+        <div class="gateway-container">
+            
+            <div class="gateway-header">
+                <h1>ศูนย์รวมระบบสารสนเทศ (SBW Portals)</h1>
+                <p>กรุณาเลือกระบบที่ท่านต้องการเข้าใช้งาน</p>
+            </div>
+
+            <div class="portals-grid">
+                
+                <!-- Card 1: นักเรียน -->
+                <a href="#" class="portal-card student">
+                    <span class="portal-icon">🎓</span>
+                    <h3 class="portal-title">ระบบนักเรียน</h3>
+                    <p class="portal-desc">ตรวจสอบผลการเรียน, ตารางสอน, กิจกรรมชุมนุม</p>
+                </a>
+
+                <!-- Card 2: ครูและบุคลากร -->
+                <a href="#" class="portal-card teacher">
+                    <span class="portal-icon">👨‍🏫</span>
+                    <h3 class="portal-title">ระบบบุคลากร (SGS)</h3>
+                    <p class="portal-desc">ระบบบันทึกคะแนน, งานบริหารทั่วไป, ลาราชการ</p>
+                </a>
+
+                <!-- Card 3: ผู้ปกครอง -->
+                <a href="#" class="portal-card parent">
+                    <span class="portal-icon">👨‍👩‍👧</span>
+                    <h3 class="portal-title">ระบบผู้ปกครอง</h3>
+                    <p class="portal-desc">ติดตามพฤติกรรมนักเรียน, แจ้งเตือนข่าวสาร, ชำระค่าเทอม</p>
+                </a>
+
+                <!-- Card 4: The AI Forge (แพลตฟอร์มการเรียนรู้) -->
+                <a href="#" class="portal-card aiforge">
+                    <span class="portal-icon">🤖</span>
+                    <h3 class="portal-title">The AI Forge</h3>
+                    <p class="portal-desc">RPG Coding Sandbox สำหรับฝึกทักษะโปรแกรมมิ่ง</p>
+                </a>
+
+                <!-- Card 5: ศิษย์เก่า -->
+                <a href="#" class="portal-card alumni">
+                    <span class="portal-icon">🤝</span>
+                    <h3 class="portal-title">สมาคมศิษย์เก่า</h3>
+                    <p class="portal-desc">เครือข่ายศิษย์เก่า, บริจาคสมทบทุน, ข่าวสารกิจกรรม</p>
+                </a>
+
+                <!-- Card 6: แจ้งซ่อม IT -->
+                <a href="#" class="portal-card support">
+                    <span class="portal-icon">🛠️</span>
+                    <h3 class="portal-title">IT Support</h3>
+                    <p class="portal-desc">แจ้งซ่อมคอมพิวเตอร์, ขอใช้ห้องปฏิบัติการ, ระบบเครือข่าย</p>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

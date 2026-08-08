@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ข้อมูลติดต่อ | โรงเรียนสระบุรีวิทยาคม</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/original-common.css">
+  <style>
+/* ===== Body layout from demo/t6-contact.html (chrome stripped) ===== */
+
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 15px; /* ขอบโค้งมน 15px */
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        
+        
+        
+        
+        
+
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.95), rgba(18, 56, 128, 0.95)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-section h1 { color: var(--secondary-color); font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* Section Settings */
+        .section-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+        }
+
+        /* -------------------------------------------
+           ส่วนที่ 1: ดาวน์โหลดเอกสาร (Blurb Module)
+        ------------------------------------------- */
+        .blurb-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .blurb-card {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blurb-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .blurb-icon {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .blurb-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .blurb-btn {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-color);
+            font-weight: 500;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 2px;
+            transition: color 0.2s ease;
+        }
+        .blurb-card:hover .blurb-btn { color: #2255b3; }
+
+        /* -------------------------------------------
+           ส่วนที่ 2: ติดต่อเรา (1/2 + 1/2 Layout)
+        ------------------------------------------- */
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* แบ่ง 1/2 + 1/2 */
+            gap: 40px;
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
+        /* ฝั่งซ้าย: Contact Form Module */
+        .contact-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        /* ซ่อน Label ไว้ใน Placeholder โดยการไม่ใช้ <label> แต่ออกแบบ Input ให้ทันสมัย */
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px; /* ขอบมนเล็กน้อยสำหรับฟอร์ม */
+            background-color: var(--bg-color);
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            color: #333;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .contact-form input:focus, 
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: #ffffff;
+        }
+        
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 40px;
+            border: none;
+            border-radius: 25px; /* ปุ่มโค้งมนสีเหลือง */
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 194, 14, 0.4);
+        }
+
+        /* ฝั่งขวา: Map Module */
+        .map-module {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 2px solid var(--bg-color);
+        }
+        .map-module iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 992px) {
+            .blurb-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-row { grid-template-columns: 1fr; } /* Tablet ย่อแผนที่และฟอร์มเป็น 1 คอลัมน์ */
+            .map-module { height: 400px; }
+        }
+        @media (max-width: 600px) {
+            .blurb-grid { grid-template-columns: 1fr; }
+            .contact-row { padding: 30px 20px; }
+        }
+
+        
+        
+    
+  </style>
+</head>
+<body class="et_pb_pagebuilder_layout">
+<div id="et-boc" class="et-boc">
+<!-- Divi Theme Builder: Header (chrome from original-common.css) -->
+<header class="et-l et-l--header global-header">
+  <a class="logo et_pb_module et_pb_image" href="../index.html">
+    <img src="../assets/logo-sbw-new.png" alt="โรงเรียนสระบุรีวิทยาคม">
+    <span>สระบุรีวิทยาคม<span class="en">SARABURIWITTHAYAKHOM SCHOOL</span></span>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="เมนู">เมนู</button>
+  <ul class="main-menu et_pb_module et_pb_menu">
+    <li><a href="../index.html">หน้าแรก</a></li>
+    <li>
+      <button type="button">เกี่ยวกับโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../about/index.html"><strong>ภาพรวมเกี่ยวกับโรงเรียน</strong></a></li>
+        <li><a href="../about/history.html">ประวัติโรงเรียน</a></li><li><a href="../about/vision.html">วิสัยทัศน์ / พันธกิจ</a></li><li><a href="../about/philosophy.html">ปรัชญา / คติพจน์</a></li><li><a href="../about/symbols.html">สัญลักษณ์โรงเรียน</a></li><li><a href="../about/administrators.html">ทำเนียบผู้บริหาร</a></li><li><a href="../about/director-message.html">สารจากผู้อำนวยการ</a></li><li><a href="../about/org-structure.html">โครงสร้างการบริหาร</a></li><li><a href="../about/general.html">ข้อมูลทั่วไป</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">หลักสูตรและการเรียนการสอน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../curriculum/index.html"><strong>ภาพรวมหลักสูตรและการเรียนการสอน</strong></a></li>
+        <li><a href="../curriculum/lower-secondary.html">หลักสูตรมัธยมศึกษาตอนต้น</a></li><li><a href="../curriculum/upper-secondary.html">หลักสูตรมัธยมศึกษาตอนปลาย</a></li><li><a href="../curriculum/special-programs.html">ห้องเรียนพิเศษ</a></li><li><a href="../curriculum/study-plans.html">แผนการเรียน</a></li><li><a href="../curriculum/departments.html">กลุ่มสาระการเรียนรู้</a></li><li><a href="../curriculum/handbook.html">คู่มือหลักสูตร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ข่าวประชาสัมพันธ์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../news/index.html"><strong>ภาพรวมข่าวประชาสัมพันธ์</strong></a></li>
+        <li><a href="../news/general.html">ข่าวทั่วไป</a></li><li><a href="../news/academic.html">ข่าววิชาการ</a></li><li><a href="../news/activities.html">ข่าวกิจกรรม</a></li><li><a href="../news/announcements.html">ประกาศโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">รับสมัครนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../admission/index.html"><strong>ภาพรวมรับสมัครนักเรียน</strong></a></li>
+        <li><a href="../admission/regulations.html">ระเบียบการรับสมัคร</a></li><li><a href="../admission/calendar.html">ปฏิทินการรับสมัคร</a></li><li><a href="../admission/status.html">ตรวจสอบสถานะ</a></li><li><a href="../admission/results.html">ประกาศผล</a></li><li><a href="../admission/faq.html">FAQ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ชีวิตในโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../student-life/index.html"><strong>ภาพรวมชีวิตในโรงเรียน</strong></a></li>
+        <li><a href="../student-life/highlights.html">กิจกรรมเด่น</a></li><li><a href="../student-life/clubs.html">ชุมนุม</a></li><li><a href="../student-life/sports.html">กีฬา</a></li><li><a href="../student-life/esports.html">eSports</a></li><li><a href="../student-life/gallery.html">Gallery</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">บุคลากร ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../staff/index.html"><strong>ภาพรวมบุคลากร</strong></a></li>
+        <li><a href="../staff/executives.html">ผู้บริหาร</a></li><li><a href="../staff/teachers.html">ครูผู้สอน</a></li><li><a href="../staff/officers.html">เจ้าหน้าที่</a></li><li><a href="../staff/contact.html">ติดต่อบุคลากร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../students/index.html"><strong>ภาพรวมสำหรับนักเรียน</strong></a></li>
+        <li><a href="../students/timetable.html">ตารางเรียน</a></li><li><a href="../students/exam-schedule.html">ตารางสอบ</a></li><li><a href="../students/activities.html">ระบบงานกิจกรรม</a></li><li><a href="../students/handbook.html">คู่มือนักเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับผู้ปกครอง ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../parents/index.html"><strong>ภาพรวมสำหรับผู้ปกครอง</strong></a></li>
+        <li><a href="../parents/news.html">ข่าวผู้ปกครอง</a></li><li><a href="../parents/handbook.html">คู่มือผู้ปกครอง</a></li><li><a href="../parents/advisor.html">ติดต่อครูที่ปรึกษา</a></li><li><a href="../parents/report.html">ช่องทางแจ้งเรื่อง</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ฐานความรู้ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../knowledge-base/index.html"><strong>ภาพรวมฐานความรู้</strong></a></li>
+        <li><a href="../knowledge-base/forms.html">แบบฟอร์มราชการ</a></li><li><a href="../knowledge-base/documents.html">คู่มือ / เอกสาร</a></li><li><a href="../knowledge-base/media.html">โลโก้ / สื่อ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ติดต่อเรา ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../contact/index.html"><strong>ภาพรวมติดต่อเรา</strong></a></li>
+        <li><a href="../contact/info.html">ข้อมูลติดต่อ</a></li><li><a href="../contact/map.html">แผนที่</a></li><li><a href="../contact/message.html">ส่งข้อความถึงโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ระบบออนไลน์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="../portals/index.html"><strong>ภาพรวมระบบออนไลน์</strong></a></li>
+        <li><a href="../portals/student.html">Student Portal</a></li><li><a href="../portals/teacher.html">Teacher Portal</a></li><li><a href="../portals/grades.html">เช็คผลการเรียน</a></li>
+      </ul>
+    </li>
+    <li><a href="../sitemap.html">แผนผังเว็บ</a></li>
+  </ul>
+  <a class="btn-portal et_pb_button" href="../portals/index.html">Portals</a>
+</header>
+<!-- demo source: demo/t6-contact.html | pipeline: unified -->
+<div id="et-main-area">
+  <div id="main-content">
+    <article class="et_pb_post">
+      <div class="et_builder_inner_content">
+
+    <section class="hero-section">
+        <h1>ข้อมูลติดต่อ</h1>
+        <p>ติดต่อเรา · โรงเรียนสระบุรีวิทยาคม</p>
+    </section>
+    <div class="container container--stack narrow"><!-- Divi Library template: demo/t6-contact.html T6 --><h2>ติดต่อโรงเรียนสระบุรีวิทยาคม</h2>
+      <ul class="bullets"><li>532 ถนนพหลโยธิน ตำบลปากเพรียว อำเภอเมืองสระบุรี จังหวัดสระบุรี 18000</li><li>โทร 036-211206, 036-231572</li><li>sbw_saraburi@hotmail.com</li>
+      <li>ผู้ประสานงานเว็บไซต์: นายฉัฐสรณ์ คำโพธิ์ · s.khumpo@sbw.ac.th</li>
+      <li>Facebook: <a href="https://www.facebook.com/SaraburiwitthayakhomSchool" target="_blank" rel="noopener">SaraburiwitthayakhomSchool</a></li></ul></div>
+      </div>
+    </article>
+  </div>
+</div>
+<div class="extra-bar">
+  <a href="../admission/index.html">รับสมัคร</a>
+  <a href="../news/index.html">ข่าวสาร</a>
+  <a href="../ai-center.html">SBW-AI</a>
+  <a href="../alumni.html">ศิษย์เก่า</a>
+  <a href="../ita.html">ITA</a>
+  <a href="../e-library.html">E-Library</a>
+  <a href="../sitemap.html">แผนผังเว็บไซต์</a>
+</div>
+<footer class="et-l et-l--footer global-footer">
+  <div class="footer-grid et_pb_row">
+    <div class="footer-col"><h4>โรงเรียนสระบุรีวิทยาคม</h4><p>ส.บ.ว.รวมใจ ไปได้ไกลกว่าเดิม</p><p>ลูกเหลืองฟ้า สง่างาม สมนาม สระบุรีวิทยาคม</p></div>
+    <div class="footer-col"><h4>เมนูลัด</h4><ul>
+      <li><a href="../admission/index.html">สมัครเรียน</a></li>
+      <li><a href="../portals/index.html">ระบบออนไลน์</a></li>
+      <li><a href="../knowledge-base/index.html">ฐานความรู้</a></li>
+      <li><a href="../sitemap.html">แผนผังเว็บไซต์</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>ติดต่อเรา</h4><ul>
+      <li>532 ถนนพหลโยธิน ตำบลปากเพรียว อำเภอเมืองสระบุรี จังหวัดสระบุรี 18000</li><li>โทร 036-211206, 036-231572</li><li>sbw_saraburi@hotmail.com</li>
+    </ul></div>
+    <div class="footer-col"><h4>สำหรับผู้ใช้</h4><ul>
+      <li><a href="../students/index.html">สำหรับนักเรียน</a></li>
+      <li><a href="../parents/index.html">สำหรับผู้ปกครอง</a></li>
+      <li><a href="../staff/index.html">บุคลากร</a></li>
+      <li><a href="../privacy.html">ความเป็นส่วนตัว</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 โรงเรียนสระบุรีวิทยาคม · มาตรฐานเดียวจาก demo/ (T1–T6 + custom)</div>
+</footer>
+<script src="../js/main.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,899 @@
+{
+  "generatedAt": "2026-08-08T09:10:00.841Z",
+  "standard": {
+    "leaf": "T1–T6 from demo/",
+    "hub": "T4 news-grid (except custom highlight hubs: admission, portals)",
+    "custom": "CUSTOM_DEMO map",
+    "chrome": "css/original-common.css only"
+  },
+  "facts": {
+    "name": "โรงเรียนสระบุรีวิทยาคม",
+    "slogan": "ส.บ.ว.รวมใจ ไปได้ไกลกว่าเดิม",
+    "motto": "ลูกเหลืองฟ้า สง่างาม สมนาม สระบุรีวิทยาคม",
+    "students": "3,974",
+    "staff": "253",
+    "years": "124",
+    "quality": "ยอดเยี่ยม",
+    "director": "ดร.ธนาพล จีรเดชภัทร์",
+    "address": "532 ถนนพหลโยธิน ตำบลปากเพรียว อำเภอเมืองสระบุรี จังหวัดสระบุรี 18000",
+    "phone": "036-211206, 036-231572",
+    "email": "sbw_saraburi@hotmail.com"
+  },
+  "templates": {
+    "t1": "t1-sidebar.html",
+    "t2": "t2-curriculum-accordion.html",
+    "t3": "t3-personnel.html",
+    "t4": "t4-news-blog.html",
+    "t5": "t5-gallery.html",
+    "t6": "t6-contact.html"
+  },
+  "customDemo": {
+    "index.html": "home.html",
+    "admission/index.html": "admission.html",
+    "portals/index.html": "portals.html",
+    "ai-center.html": "ai-center.html",
+    "alumni.html": "alumni.html",
+    "ita.html": "ita.html",
+    "e-library.html": "e-library.html",
+    "ai-forge.html": "ai-forge.html",
+    "calendar.html": "calendar.html",
+    "privacy.html": "privacy.html",
+    "404.html": "404.html",
+    "sitemap.html": "sitemap.html"
+  },
+  "sections": [
+    {
+      "id": "about",
+      "label": "เกี่ยวกับโรงเรียน",
+      "hub": "about/index.html",
+      "children": [
+        {
+          "file": "history.html",
+          "title": "ประวัติโรงเรียน",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "vision.html",
+          "title": "วิสัยทัศน์ / พันธกิจ",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "philosophy.html",
+          "title": "ปรัชญา / คติพจน์",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "symbols.html",
+          "title": "สัญลักษณ์โรงเรียน",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "administrators.html",
+          "title": "ทำเนียบผู้บริหาร",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "director-message.html",
+          "title": "สารจากผู้อำนวยการ",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "org-structure.html",
+          "title": "โครงสร้างการบริหาร",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "general.html",
+          "title": "ข้อมูลทั่วไป",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        }
+      ]
+    },
+    {
+      "id": "curriculum",
+      "label": "หลักสูตรและการเรียนการสอน",
+      "hub": "curriculum/index.html",
+      "children": [
+        {
+          "file": "lower-secondary.html",
+          "title": "หลักสูตรมัธยมศึกษาตอนต้น",
+          "template": "t2",
+          "demo": "t2-curriculum-accordion.html"
+        },
+        {
+          "file": "upper-secondary.html",
+          "title": "หลักสูตรมัธยมศึกษาตอนปลาย",
+          "template": "t2",
+          "demo": "t2-curriculum-accordion.html"
+        },
+        {
+          "file": "special-programs.html",
+          "title": "ห้องเรียนพิเศษ",
+          "template": "t2",
+          "demo": "t2-curriculum-accordion.html"
+        },
+        {
+          "file": "study-plans.html",
+          "title": "แผนการเรียน",
+          "template": "t2",
+          "demo": "t2-curriculum-accordion.html"
+        },
+        {
+          "file": "departments.html",
+          "title": "กลุ่มสาระการเรียนรู้",
+          "template": "t2",
+          "demo": "t2-curriculum-accordion.html"
+        },
+        {
+          "file": "handbook.html",
+          "title": "คู่มือหลักสูตร",
+          "template": "t2",
+          "demo": "t2-curriculum-accordion.html"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "label": "ข่าวประชาสัมพันธ์",
+      "hub": "news/index.html",
+      "children": [
+        {
+          "file": "general.html",
+          "title": "ข่าวทั่วไป",
+          "template": "t4",
+          "demo": "t4-news-blog.html"
+        },
+        {
+          "file": "academic.html",
+          "title": "ข่าววิชาการ",
+          "template": "t4",
+          "demo": "t4-news-blog.html"
+        },
+        {
+          "file": "activities.html",
+          "title": "ข่าวกิจกรรม",
+          "template": "t4",
+          "demo": "t4-news-blog.html"
+        },
+        {
+          "file": "announcements.html",
+          "title": "ประกาศโรงเรียน",
+          "template": "t4",
+          "demo": "t4-news-blog.html"
+        }
+      ]
+    },
+    {
+      "id": "admission",
+      "label": "รับสมัครนักเรียน",
+      "hub": "admission/index.html",
+      "children": [
+        {
+          "file": "regulations.html",
+          "title": "ระเบียบการรับสมัคร",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "calendar.html",
+          "title": "ปฏิทินการรับสมัคร",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "status.html",
+          "title": "ตรวจสอบสถานะ",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "results.html",
+          "title": "ประกาศผล",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "faq.html",
+          "title": "FAQ",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        }
+      ]
+    },
+    {
+      "id": "student-life",
+      "label": "ชีวิตในโรงเรียน",
+      "hub": "student-life/index.html",
+      "children": [
+        {
+          "file": "highlights.html",
+          "title": "กิจกรรมเด่น",
+          "template": "t5",
+          "demo": "t5-gallery.html"
+        },
+        {
+          "file": "clubs.html",
+          "title": "ชุมนุม",
+          "template": "t5",
+          "demo": "t5-gallery.html"
+        },
+        {
+          "file": "sports.html",
+          "title": "กีฬา",
+          "template": "t5",
+          "demo": "t5-gallery.html"
+        },
+        {
+          "file": "esports.html",
+          "title": "eSports",
+          "template": "t5",
+          "demo": "t5-gallery.html"
+        },
+        {
+          "file": "gallery.html",
+          "title": "Gallery",
+          "template": "t5",
+          "demo": "t5-gallery.html"
+        }
+      ]
+    },
+    {
+      "id": "staff",
+      "label": "บุคลากร",
+      "hub": "staff/index.html",
+      "children": [
+        {
+          "file": "executives.html",
+          "title": "ผู้บริหาร",
+          "template": "t3",
+          "demo": "t3-personnel.html"
+        },
+        {
+          "file": "teachers.html",
+          "title": "ครูผู้สอน",
+          "template": "t3",
+          "demo": "t3-personnel.html"
+        },
+        {
+          "file": "officers.html",
+          "title": "เจ้าหน้าที่",
+          "template": "t3",
+          "demo": "t3-personnel.html"
+        },
+        {
+          "file": "contact.html",
+          "title": "ติดต่อบุคลากร",
+          "template": "t3",
+          "demo": "t3-personnel.html"
+        }
+      ]
+    },
+    {
+      "id": "students",
+      "label": "สำหรับนักเรียน",
+      "hub": "students/index.html",
+      "children": [
+        {
+          "file": "timetable.html",
+          "title": "ตารางเรียน",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "exam-schedule.html",
+          "title": "ตารางสอบ",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "activities.html",
+          "title": "ระบบงานกิจกรรม",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "handbook.html",
+          "title": "คู่มือนักเรียน",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        }
+      ]
+    },
+    {
+      "id": "parents",
+      "label": "สำหรับผู้ปกครอง",
+      "hub": "parents/index.html",
+      "children": [
+        {
+          "file": "news.html",
+          "title": "ข่าวผู้ปกครอง",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "handbook.html",
+          "title": "คู่มือผู้ปกครอง",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "advisor.html",
+          "title": "ติดต่อครูที่ปรึกษา",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        },
+        {
+          "file": "report.html",
+          "title": "ช่องทางแจ้งเรื่อง",
+          "template": "t1",
+          "demo": "t1-sidebar.html"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-base",
+      "label": "ฐานความรู้",
+      "hub": "knowledge-base/index.html",
+      "children": [
+        {
+          "file": "forms.html",
+          "title": "แบบฟอร์มราชการ",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        },
+        {
+          "file": "documents.html",
+          "title": "คู่มือ / เอกสาร",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        },
+        {
+          "file": "media.html",
+          "title": "โลโก้ / สื่อ",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "ติดต่อเรา",
+      "hub": "contact/index.html",
+      "children": [
+        {
+          "file": "info.html",
+          "title": "ข้อมูลติดต่อ",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        },
+        {
+          "file": "map.html",
+          "title": "แผนที่",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        },
+        {
+          "file": "message.html",
+          "title": "ส่งข้อความถึงโรงเรียน",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        }
+      ]
+    },
+    {
+      "id": "portals",
+      "label": "ระบบออนไลน์",
+      "hub": "portals/index.html",
+      "children": [
+        {
+          "file": "student.html",
+          "title": "Student Portal",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        },
+        {
+          "file": "teacher.html",
+          "title": "Teacher Portal",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        },
+        {
+          "file": "grades.html",
+          "title": "เช็คผลการเรียน",
+          "template": "t6",
+          "demo": "t6-contact.html"
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "path": "index.html",
+      "title": "หน้าแรก",
+      "template": "custom",
+      "demo": "home.html"
+    },
+    {
+      "path": "about/index.html",
+      "title": "เกี่ยวกับโรงเรียน",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/history.html",
+      "title": "ประวัติโรงเรียน",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/vision.html",
+      "title": "วิสัยทัศน์ / พันธกิจ",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/philosophy.html",
+      "title": "ปรัชญา / คติพจน์",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/symbols.html",
+      "title": "สัญลักษณ์โรงเรียน",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/administrators.html",
+      "title": "ทำเนียบผู้บริหาร",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/director-message.html",
+      "title": "สารจากผู้อำนวยการ",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/org-structure.html",
+      "title": "โครงสร้างการบริหาร",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "about/general.html",
+      "title": "ข้อมูลทั่วไป",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "เกี่ยวกับโรงเรียน"
+    },
+    {
+      "path": "curriculum/index.html",
+      "title": "หลักสูตรและการเรียนการสอน",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "หลักสูตรและการเรียนการสอน"
+    },
+    {
+      "path": "curriculum/lower-secondary.html",
+      "title": "หลักสูตรมัธยมศึกษาตอนต้น",
+      "template": "t2",
+      "demo": "t2-curriculum-accordion.html",
+      "section": "หลักสูตรและการเรียนการสอน"
+    },
+    {
+      "path": "curriculum/upper-secondary.html",
+      "title": "หลักสูตรมัธยมศึกษาตอนปลาย",
+      "template": "t2",
+      "demo": "t2-curriculum-accordion.html",
+      "section": "หลักสูตรและการเรียนการสอน"
+    },
+    {
+      "path": "curriculum/special-programs.html",
+      "title": "ห้องเรียนพิเศษ",
+      "template": "t2",
+      "demo": "t2-curriculum-accordion.html",
+      "section": "หลักสูตรและการเรียนการสอน"
+    },
+    {
+      "path": "curriculum/study-plans.html",
+      "title": "แผนการเรียน",
+      "template": "t2",
+      "demo": "t2-curriculum-accordion.html",
+      "section": "หลักสูตรและการเรียนการสอน"
+    },
+    {
+      "path": "curriculum/departments.html",
+      "title": "กลุ่มสาระการเรียนรู้",
+      "template": "t2",
+      "demo": "t2-curriculum-accordion.html",
+      "section": "หลักสูตรและการเรียนการสอน"
+    },
+    {
+      "path": "curriculum/handbook.html",
+      "title": "คู่มือหลักสูตร",
+      "template": "t2",
+      "demo": "t2-curriculum-accordion.html",
+      "section": "หลักสูตรและการเรียนการสอน"
+    },
+    {
+      "path": "news/index.html",
+      "title": "ข่าวประชาสัมพันธ์",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "ข่าวประชาสัมพันธ์"
+    },
+    {
+      "path": "news/general.html",
+      "title": "ข่าวทั่วไป",
+      "template": "t4",
+      "demo": "t4-news-blog.html",
+      "section": "ข่าวประชาสัมพันธ์"
+    },
+    {
+      "path": "news/academic.html",
+      "title": "ข่าววิชาการ",
+      "template": "t4",
+      "demo": "t4-news-blog.html",
+      "section": "ข่าวประชาสัมพันธ์"
+    },
+    {
+      "path": "news/activities.html",
+      "title": "ข่าวกิจกรรม",
+      "template": "t4",
+      "demo": "t4-news-blog.html",
+      "section": "ข่าวประชาสัมพันธ์"
+    },
+    {
+      "path": "news/announcements.html",
+      "title": "ประกาศโรงเรียน",
+      "template": "t4",
+      "demo": "t4-news-blog.html",
+      "section": "ข่าวประชาสัมพันธ์"
+    },
+    {
+      "path": "admission/index.html",
+      "title": "รับสมัครนักเรียน",
+      "template": "custom",
+      "demo": "admission.html",
+      "section": "รับสมัครนักเรียน"
+    },
+    {
+      "path": "admission/regulations.html",
+      "title": "ระเบียบการรับสมัคร",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "รับสมัครนักเรียน"
+    },
+    {
+      "path": "admission/calendar.html",
+      "title": "ปฏิทินการรับสมัคร",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "รับสมัครนักเรียน"
+    },
+    {
+      "path": "admission/status.html",
+      "title": "ตรวจสอบสถานะ",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "รับสมัครนักเรียน"
+    },
+    {
+      "path": "admission/results.html",
+      "title": "ประกาศผล",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "รับสมัครนักเรียน"
+    },
+    {
+      "path": "admission/faq.html",
+      "title": "FAQ",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "รับสมัครนักเรียน"
+    },
+    {
+      "path": "student-life/index.html",
+      "title": "ชีวิตในโรงเรียน",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "ชีวิตในโรงเรียน"
+    },
+    {
+      "path": "student-life/highlights.html",
+      "title": "กิจกรรมเด่น",
+      "template": "t5",
+      "demo": "t5-gallery.html",
+      "section": "ชีวิตในโรงเรียน"
+    },
+    {
+      "path": "student-life/clubs.html",
+      "title": "ชุมนุม",
+      "template": "t5",
+      "demo": "t5-gallery.html",
+      "section": "ชีวิตในโรงเรียน"
+    },
+    {
+      "path": "student-life/sports.html",
+      "title": "กีฬา",
+      "template": "t5",
+      "demo": "t5-gallery.html",
+      "section": "ชีวิตในโรงเรียน"
+    },
+    {
+      "path": "student-life/esports.html",
+      "title": "eSports",
+      "template": "t5",
+      "demo": "t5-gallery.html",
+      "section": "ชีวิตในโรงเรียน"
+    },
+    {
+      "path": "student-life/gallery.html",
+      "title": "Gallery",
+      "template": "t5",
+      "demo": "t5-gallery.html",
+      "section": "ชีวิตในโรงเรียน"
+    },
+    {
+      "path": "staff/index.html",
+      "title": "บุคลากร",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "บุคลากร"
+    },
+    {
+      "path": "staff/executives.html",
+      "title": "ผู้บริหาร",
+      "template": "t3",
+      "demo": "t3-personnel.html",
+      "section": "บุคลากร"
+    },
+    {
+      "path": "staff/teachers.html",
+      "title": "ครูผู้สอน",
+      "template": "t3",
+      "demo": "t3-personnel.html",
+      "section": "บุคลากร"
+    },
+    {
+      "path": "staff/officers.html",
+      "title": "เจ้าหน้าที่",
+      "template": "t3",
+      "demo": "t3-personnel.html",
+      "section": "บุคลากร"
+    },
+    {
+      "path": "staff/contact.html",
+      "title": "ติดต่อบุคลากร",
+      "template": "t3",
+      "demo": "t3-personnel.html",
+      "section": "บุคลากร"
+    },
+    {
+      "path": "students/index.html",
+      "title": "สำหรับนักเรียน",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "สำหรับนักเรียน"
+    },
+    {
+      "path": "students/timetable.html",
+      "title": "ตารางเรียน",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับนักเรียน"
+    },
+    {
+      "path": "students/exam-schedule.html",
+      "title": "ตารางสอบ",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับนักเรียน"
+    },
+    {
+      "path": "students/activities.html",
+      "title": "ระบบงานกิจกรรม",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับนักเรียน"
+    },
+    {
+      "path": "students/handbook.html",
+      "title": "คู่มือนักเรียน",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับนักเรียน"
+    },
+    {
+      "path": "parents/index.html",
+      "title": "สำหรับผู้ปกครอง",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "สำหรับผู้ปกครอง"
+    },
+    {
+      "path": "parents/news.html",
+      "title": "ข่าวผู้ปกครอง",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับผู้ปกครอง"
+    },
+    {
+      "path": "parents/handbook.html",
+      "title": "คู่มือผู้ปกครอง",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับผู้ปกครอง"
+    },
+    {
+      "path": "parents/advisor.html",
+      "title": "ติดต่อครูที่ปรึกษา",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับผู้ปกครอง"
+    },
+    {
+      "path": "parents/report.html",
+      "title": "ช่องทางแจ้งเรื่อง",
+      "template": "t1",
+      "demo": "t1-sidebar.html",
+      "section": "สำหรับผู้ปกครอง"
+    },
+    {
+      "path": "knowledge-base/index.html",
+      "title": "ฐานความรู้",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "ฐานความรู้"
+    },
+    {
+      "path": "knowledge-base/forms.html",
+      "title": "แบบฟอร์มราชการ",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ฐานความรู้"
+    },
+    {
+      "path": "knowledge-base/documents.html",
+      "title": "คู่มือ / เอกสาร",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ฐานความรู้"
+    },
+    {
+      "path": "knowledge-base/media.html",
+      "title": "โลโก้ / สื่อ",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ฐานความรู้"
+    },
+    {
+      "path": "contact/index.html",
+      "title": "ติดต่อเรา",
+      "template": "hub",
+      "demo": "t4-news-blog.html",
+      "section": "ติดต่อเรา"
+    },
+    {
+      "path": "contact/info.html",
+      "title": "ข้อมูลติดต่อ",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ติดต่อเรา"
+    },
+    {
+      "path": "contact/map.html",
+      "title": "แผนที่",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ติดต่อเรา"
+    },
+    {
+      "path": "contact/message.html",
+      "title": "ส่งข้อความถึงโรงเรียน",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ติดต่อเรา"
+    },
+    {
+      "path": "portals/index.html",
+      "title": "ระบบออนไลน์",
+      "template": "custom",
+      "demo": "portals.html",
+      "section": "ระบบออนไลน์"
+    },
+    {
+      "path": "portals/student.html",
+      "title": "Student Portal",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ระบบออนไลน์"
+    },
+    {
+      "path": "portals/teacher.html",
+      "title": "Teacher Portal",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ระบบออนไลน์"
+    },
+    {
+      "path": "portals/grades.html",
+      "title": "เช็คผลการเรียน",
+      "template": "t6",
+      "demo": "t6-contact.html",
+      "section": "ระบบออนไลน์"
+    },
+    {
+      "path": "ita.html",
+      "title": "ความโปร่งใส (ITA)",
+      "template": "custom",
+      "demo": "ita.html"
+    },
+    {
+      "path": "alumni.html",
+      "title": "สมาคมศิษย์เก่า",
+      "template": "custom",
+      "demo": "alumni.html"
+    },
+    {
+      "path": "ai-center.html",
+      "title": "SBW-AI Center",
+      "template": "custom",
+      "demo": "ai-center.html"
+    },
+    {
+      "path": "ai-forge.html",
+      "title": "The AI Forge",
+      "template": "custom",
+      "demo": "ai-forge.html"
+    },
+    {
+      "path": "e-library.html",
+      "title": "E-Library · แนะนำหนังสือ",
+      "template": "custom",
+      "demo": "e-library.html"
+    },
+    {
+      "path": "privacy.html",
+      "title": "นโยบายความเป็นส่วนตัว",
+      "template": "custom",
+      "demo": "privacy.html"
+    },
+    {
+      "path": "calendar.html",
+      "title": "ปฏิทินกิจกรรมโรงเรียน",
+      "template": "custom",
+      "demo": "calendar.html"
+    },
+    {
+      "path": "404.html",
+      "title": "ไม่พบหน้าเว็บ",
+      "template": "custom",
+      "demo": "404.html"
+    },
+    {
+      "path": "sitemap.html",
+      "title": "แผนผังเว็บไซต์",
+      "template": "custom",
+      "demo": "sitemap.html"
+    }
+  ]
+}

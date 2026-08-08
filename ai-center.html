@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBW-AI Center | โรงเรียนสระบุรีวิทยาคม</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/original-common.css">
+  <style>
+/* ===== Body layout from demo/ai-center.html (chrome stripped) ===== */
+
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --tech-dark: #0A1128;
+            --tech-accent: #00F0FF;
+            --border-radius: 12px;
+            --soft-shadow: 0 10px 30px rgba(18, 56, 128, 0.08);
+            --glow-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        /* Header (Standard) */
+        
+        
+        
+        
+        
+
+        /* AI Hero Section */
+        .ai-hero {
+            background-color: var(--tech-dark);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* สร้างเส้น Grid พื้นหลังสไตล์ Tech */
+        .ai-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: 1;
+        }
+
+        .ai-hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .hero-badge { display: inline-block; background: rgba(0, 240, 255, 0.1); color: var(--tech-accent); padding: 6px 18px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; margin-bottom: 25px; border: 1px solid rgba(0, 240, 255, 0.3); }
+        .ai-hero h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 15px; line-height: 1.1; letter-spacing: -1px; }
+        .ai-hero h1 span { color: var(--tech-accent); }
+        .ai-hero p { font-size: 1.2rem; color: #A0B2C6; margin-bottom: 40px; font-weight: 300; }
+        
+        /* Section Title */
+        .section-header { text-align: center; margin: 80px 0 40px; }
+        .section-header h2 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 10px; }
+        .section-header p { color: #666; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Ecosystem Grid */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
+        
+        .eco-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--soft-shadow);
+            border-top: 4px solid var(--primary-color);
+            transition: all 0.3s;
+        }
+        .eco-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(18, 56, 128, 0.12); border-color: var(--secondary-color); }
+        
+        .eco-icon { font-size: 3rem; margin-bottom: 20px; color: var(--primary-color); }
+        .eco-card h3 { font-size: 1.4rem; color: var(--primary-color); margin-bottom: 15px; }
+        .eco-card p { color: #555; font-size: 0.95rem; margin-bottom: 25px; }
+        
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-tag { background: var(--bg-color); color: var(--primary-color); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+
+        /* Student Innovation Showcase (Split Layout) */
+        .showcase-section { background: white; padding: 80px 0; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea; }
+        .project-row { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 60px; }
+        .project-row:last-child { margin-bottom: 0; }
+        
+        /* สลับฝั่งซ้าย-ขวา สำหรับแถวที่สอง */
+        .project-row.reverse { direction: rtl; }
+        .project-row.reverse > * { direction: ltr; }
+
+        .project-img-wrapper {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+        }
+        .project-img { width: 100%; height: auto; display: block; aspect-ratio: 4/3; object-fit: cover; }
+        
+        .project-info h3 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 15px; }
+        .project-info p { color: #555; font-size: 1.05rem; margin-bottom: 20px; }
+        .project-list { list-style: none; margin-bottom: 25px; }
+        .project-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #444; }
+        .project-list li::before { content: '✓'; color: #4CAF50; font-weight: bold; }
+
+        /* Tech Stack Marquee (จำลอง) */
+        .stack-section { padding: 60px 20px; text-align: center; background: var(--tech-dark); color: white; }
+        .stack-section h3 { font-size: 1.5rem; margin-bottom: 30px; font-weight: 400; color: #A0B2C6; }
+        .stack-icons { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; opacity: 0.8; }
+        .stack-name { font-size: 1.5rem; font-weight: 600; letter-spacing: 1px; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .eco-grid { grid-template-columns: repeat(2, 1fr); }
+            .project-row, .project-row.reverse { grid-template-columns: 1fr; gap: 30px; direction: ltr; }
+        }
+        @media (max-width: 768px) {
+            .eco-grid { grid-template-columns: 1fr; }
+            .ai-hero h1 { font-size: 3.2rem; }
+        }
+
+        /* Footer */
+        
+    
+  </style>
+</head>
+<body class="et_pb_pagebuilder_layout">
+<div id="et-boc" class="et-boc">
+<!-- Divi Theme Builder: Header (chrome from original-common.css) -->
+<header class="et-l et-l--header global-header">
+  <a class="logo et_pb_module et_pb_image" href="index.html">
+    <img src="assets/logo-sbw-new.png" alt="โรงเรียนสระบุรีวิทยาคม">
+    <span>สระบุรีวิทยาคม<span class="en">SARABURIWITTHAYAKHOM SCHOOL</span></span>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="เมนู">เมนู</button>
+  <ul class="main-menu et_pb_module et_pb_menu">
+    <li><a href="index.html">หน้าแรก</a></li>
+    <li>
+      <button type="button">เกี่ยวกับโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="about/index.html"><strong>ภาพรวมเกี่ยวกับโรงเรียน</strong></a></li>
+        <li><a href="about/history.html">ประวัติโรงเรียน</a></li><li><a href="about/vision.html">วิสัยทัศน์ / พันธกิจ</a></li><li><a href="about/philosophy.html">ปรัชญา / คติพจน์</a></li><li><a href="about/symbols.html">สัญลักษณ์โรงเรียน</a></li><li><a href="about/administrators.html">ทำเนียบผู้บริหาร</a></li><li><a href="about/director-message.html">สารจากผู้อำนวยการ</a></li><li><a href="about/org-structure.html">โครงสร้างการบริหาร</a></li><li><a href="about/general.html">ข้อมูลทั่วไป</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">หลักสูตรและการเรียนการสอน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="curriculum/index.html"><strong>ภาพรวมหลักสูตรและการเรียนการสอน</strong></a></li>
+        <li><a href="curriculum/lower-secondary.html">หลักสูตรมัธยมศึกษาตอนต้น</a></li><li><a href="curriculum/upper-secondary.html">หลักสูตรมัธยมศึกษาตอนปลาย</a></li><li><a href="curriculum/special-programs.html">ห้องเรียนพิเศษ</a></li><li><a href="curriculum/study-plans.html">แผนการเรียน</a></li><li><a href="curriculum/departments.html">กลุ่มสาระการเรียนรู้</a></li><li><a href="curriculum/handbook.html">คู่มือหลักสูตร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ข่าวประชาสัมพันธ์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="news/index.html"><strong>ภาพรวมข่าวประชาสัมพันธ์</strong></a></li>
+        <li><a href="news/general.html">ข่าวทั่วไป</a></li><li><a href="news/academic.html">ข่าววิชาการ</a></li><li><a href="news/activities.html">ข่าวกิจกรรม</a></li><li><a href="news/announcements.html">ประกาศโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">รับสมัครนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="admission/index.html"><strong>ภาพรวมรับสมัครนักเรียน</strong></a></li>
+        <li><a href="admission/regulations.html">ระเบียบการรับสมัคร</a></li><li><a href="admission/calendar.html">ปฏิทินการรับสมัคร</a></li><li><a href="admission/status.html">ตรวจสอบสถานะ</a></li><li><a href="admission/results.html">ประกาศผล</a></li><li><a href="admission/faq.html">FAQ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ชีวิตในโรงเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="student-life/index.html"><strong>ภาพรวมชีวิตในโรงเรียน</strong></a></li>
+        <li><a href="student-life/highlights.html">กิจกรรมเด่น</a></li><li><a href="student-life/clubs.html">ชุมนุม</a></li><li><a href="student-life/sports.html">กีฬา</a></li><li><a href="student-life/esports.html">eSports</a></li><li><a href="student-life/gallery.html">Gallery</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">บุคลากร ▾</button>
+      <ul class="sub-menu">
+        <li><a href="staff/index.html"><strong>ภาพรวมบุคลากร</strong></a></li>
+        <li><a href="staff/executives.html">ผู้บริหาร</a></li><li><a href="staff/teachers.html">ครูผู้สอน</a></li><li><a href="staff/officers.html">เจ้าหน้าที่</a></li><li><a href="staff/contact.html">ติดต่อบุคลากร</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับนักเรียน ▾</button>
+      <ul class="sub-menu">
+        <li><a href="students/index.html"><strong>ภาพรวมสำหรับนักเรียน</strong></a></li>
+        <li><a href="students/timetable.html">ตารางเรียน</a></li><li><a href="students/exam-schedule.html">ตารางสอบ</a></li><li><a href="students/activities.html">ระบบงานกิจกรรม</a></li><li><a href="students/handbook.html">คู่มือนักเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">สำหรับผู้ปกครอง ▾</button>
+      <ul class="sub-menu">
+        <li><a href="parents/index.html"><strong>ภาพรวมสำหรับผู้ปกครอง</strong></a></li>
+        <li><a href="parents/news.html">ข่าวผู้ปกครอง</a></li><li><a href="parents/handbook.html">คู่มือผู้ปกครอง</a></li><li><a href="parents/advisor.html">ติดต่อครูที่ปรึกษา</a></li><li><a href="parents/report.html">ช่องทางแจ้งเรื่อง</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ฐานความรู้ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="knowledge-base/index.html"><strong>ภาพรวมฐานความรู้</strong></a></li>
+        <li><a href="knowledge-base/forms.html">แบบฟอร์มราชการ</a></li><li><a href="knowledge-base/documents.html">คู่มือ / เอกสาร</a></li><li><a href="knowledge-base/media.html">โลโก้ / สื่อ</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ติดต่อเรา ▾</button>
+      <ul class="sub-menu">
+        <li><a href="contact/index.html"><strong>ภาพรวมติดต่อเรา</strong></a></li>
+        <li><a href="contact/info.html">ข้อมูลติดต่อ</a></li><li><a href="contact/map.html">แผนที่</a></li><li><a href="contact/message.html">ส่งข้อความถึงโรงเรียน</a></li>
+      </ul>
+    </li>
+<li>
+      <button type="button">ระบบออนไลน์ ▾</button>
+      <ul class="sub-menu">
+        <li><a href="portals/index.html"><strong>ภาพรวมระบบออนไลน์</strong></a></li>
+        <li><a href="portals/student.html">Student Portal</a></li><li><a href="portals/teacher.html">Teacher Portal</a></li><li><a href="portals/grades.html">เช็คผลการเรียน</a></li>
+      </ul>
+    </li>
+    <li><a href="sitemap.html">แผนผังเว็บ</a></li>
+  </ul>
+  <a class="btn-portal et_pb_button" href="portals/index.html">Portals</a>
+</header>
+<!-- demo source: demo/ai-center.html | pipeline: unified -->
+<div id="et-main-area">
+  <div id="main-content">
+    <article class="et_pb_post">
+      <div class="et_builder_inner_content">
+<!-- Header -->
+    
+
+    <!-- Hero Section -->
+    <section class="ai-hero">
+        <div class="ai-hero-content">
+            <div class="hero-badge code-font">init() => SBW_AI_Ecosystem</div>
+            <h1>SBW-<span>AI</span> Center</h1>
+            <p>ศูนย์กลางการเรียนรู้ปัญญาประดิษฐ์และนวัตกรรม ขับเคลื่อนศักยภาพนักเรียนด้วยเทคโนโลยีระดับแนวหน้า บูรณาการศาสตร์แห่งโค้ดดิ้ง วิศวกรรมหุ่นยนต์ และวิทยาการข้อมูล</p>
+        </div>
+    </section>
+
+    <main>
+        <!-- Core Ecosystem -->
+        <div class="container">
+            <div class="section-header">
+                <h2>โครงสร้างระบบนิเวศนวัตกรรม</h2>
+                <p>การเตรียมความพร้อมผู้เรียนสู่อนาคต ผ่าน 3 เสาหลักของการเรียนรู้เชิงปฏิบัติการ</p>
+            </div>
+
+            <div class="eco-grid">
+                <!-- Pillar 1 -->
+                <div class="eco-card">
+                    <div class="eco-icon">💻</div>
+                    <h3>Software Engineering</h3>
+                    <p>พัฒนาระบบและแอปพลิเคชันด้วยเครื่องมือสมัยใหม่ ตั้งแต่การออกแบบ UI/UX ไปจนถึงการจัดการฐานข้อมูลและการประมวลผลบนคลาวด์</p>
+                    <div class="tech-tags code-font">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="eco-card">
+                    <div class="eco-icon">🤖</div>
+                    <h3>Robotics & Automation</h3>
+                    <p>ออกแบบกลไกและเขียนโปรแกรมควบคุมหุ่นยนต์อัตโนมัติ สู่เวทีการแข่งขันระดับประเทศ (TPA Robot) ทั้งในรูปแบบกู้ภัยและแข่งขันกีฬา</p>
+                    <div class="tech-tags code-font">
+                        <span class="tech-tag">Robo Rescue</span>
+                        <span class="tech-tag">Robo Soccer</span>
+                        <span class="tech-tag">OpenClaw</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="eco-card">
+                    <div class="eco-icon">🧠</div>
+                    <h3>AI & Data Analytics</h3>
+                    <p>เจาะลึกวิทยาการข้อมูลและการเทรนโมเดลปัญญาประดิษฐ์ เพื่อสร้างอัลกอริทึมที่สามารถวิเคราะห์ ทำนายผล และเรียนรู้ได้ด้วยตนเอง</p>
+                    <div class="tech-tags code-font">
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">Hermes Agent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Projects Showcase -->
+        <section class="showcase-section">
+            <div class="container">
+                <div class="section-header" style="margin-top: 0;">
+                    <h2>ผลงานและนวัตกรรมเด่น</h2>
+                    <p>ตัวอย่างโปรเจกต์ที่เกิดจากการบูรณาการความรู้ในชั้นเรียนสู่การสร้างสรรค์ระบบที่ใช้งานได้จริง</p>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="project-row">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Data Analytics Interface" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <span style="color: var(--secondary-color); font-weight: 700; font-size: 0.9rem; letter-spacing: 1px;">FINANCIAL TECH</span>
+                        <h3>Algorithmic Trading Bot</h3>
+                        <p>ระบบเทรดอัตโนมัติที่พัฒนาโดยนักเรียนชั้น ม.6 จากรายวิชาระบบสารสนเทศเพื่อการลงทุน ออกแบบมาเพื่อวิเคราะห์ข้อมูลเชิงสถิติและทำงานร่วมกับ API ของตลาดการเงิน</p>
+                        <ul class="project-list">
+                            <li>ประมวลผลข้อมูลราคาและทำ Backtest อัตโนมัติ</li>
+                            <li>ทำงานบนคู่เงินระดับไมโคร (เช่น XAUUSD)</li>
+                            <li>พัฒนาด้วยโครงสร้างภาษา Python และเชื่อมต่อข้อมูลแบบ Real-time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 2 (Reversed Layout) -->
+                <div class="project-row reverse">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee9811?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Gesture Recognition" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <span style="color: var(--secondary-color); font-weight: 700; font-size: 0.9rem; letter-spacing: 1px;">COMPUTER VISION</span>
+                        <h3>Gesture Password Authentication</h3>
+                        <p>แอปพลิเคชันระบบรักษาความปลอดภัยยุคใหม่ ที่ใช้ท่าทางและการเคลื่อนไหว (Gesture) แทนการพิมพ์รหัสผ่านแบบเดิม ทำงานผ่านกล้องเว็บแคมและการประมวลผลภาพแบบทันที</p>
+                        <ul class="project-list">
+                            <li>ใช้โมเดล Image Classification จาก Google Teachable Machine</li>
+                            <li>เชื่อมต่อฐานข้อมูลผู้ใช้ผ่านระบบ Firebase Backend</li>
+                            <li>ประมวลผลลำดับภาพและตรวจสอบความแม่นยำแบบ Real-time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Banner -->
+        <section class="stack-section">
+            <h3 class="code-font">Powered By Core Technologies</h3>
+            <div class="stack-icons code-font">
+                <span class="stack-name">python</span>
+                <span class="stack-name">vue.js</span>
+                <span class="stack-name">firebase</span>
+                <span class="stack-name">xgboost</span>
+                <span class="stack-name">github_copilot</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+      </div>
+    </article>
+  </div>
+</div>
+<div class="extra-bar">
+  <a href="admission/index.html">รับสมัคร</a>
+  <a href="news/index.html">ข่าวสาร</a>
+  <a href="ai-center.html">SBW-AI</a>
+  <a href="alumni.html">ศิษย์เก่า</a>
+  <a href="ita.html">ITA</a>
+  <a href="e-library.html">E-Library</a>
+  <a href="sitemap.html">แผนผังเว็บไซต์</a>
+</div>
+<footer class="et-l et-l--footer global-footer">
+  <div class="footer-grid et_pb_row">
+    <div class="footer-col"><h4>โรงเรียนสระบุรีวิทยาคม</h4><p>ส.บ.ว.รวมใจ ไปได้ไกลกว่าเดิม</p><p>ลูกเหลืองฟ้า สง่างาม สมนาม สระบุรีวิทยาคม</p></div>
+    <div class="footer-col"><h4>เมนูลัด</h4><ul>
+      <li><a href="admission/index.html">สมัครเรียน</a></li>
+      <li><a href="portals/index.html">ระบบออนไลน์</a></li>
+      <li><a href="knowledge-base/index.html">ฐานความรู้</a></li>
+      <li><a href="sitemap.html">แผนผังเว็บไซต์</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>ติดต่อเรา</h4><ul>
+      <li>532 ถนนพหลโยธิน ตำบลปากเพรียว อำเภอเมืองสระบุรี จังหวัดสระบุรี 18000</li><li>โทร 036-211206, 036-231572</li><li>sbw_saraburi@hotmail.com</li>
+    </ul></div>
+    <div class="footer-col"><h4>สำหรับผู้ใช้</h4><ul>
+      <li><a href="students/index.html">สำหรับนักเรียน</a></li>
+      <li><a href="parents/index.html">สำหรับผู้ปกครอง</a></li>
+      <li><a href="staff/index.html">บุคลากร</a></li>
+      <li><a href="privacy.html">ความเป็นส่วนตัว</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 โรงเรียนสระบุรีวิทยาคม · มาตรฐานเดียวจาก demo/ (T1–T6 + custom)</div>
+</footer>
+<script src="js/main.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โรงเรียนสระบุรีวิทยาคม | Saraburiwittayakhom School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 15px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+            --hover-shadow: 0 15px 35px rgba(18, 56, 128, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Global Header & Mega Menu */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        
+        .main-menu { display: flex; gap: 25px; list-style: none; }
+        .main-menu li a { color: var(--primary-color); font-weight: 500; transition: color 0.2s; }
+        .main-menu li a:hover { color: var(--secondary-color); }
+
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* Hero Section (Homepage Banner) */
+        .hero-home {
+            height: 80vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(18, 56, 128, 0.8), rgba(18, 56, 128, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        .hero-content h1 { font-size: 3.5rem; color: var(--secondary-color); margin-bottom: 20px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .hero-content p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; font-weight: 300; }
+        .hero-btn { background-color: white; color: var(--primary-color); padding: 15px 35px; border-radius: 30px; font-weight: 600; font-size: 1.1rem; display: inline-block; transition: all 0.3s; margin: 0 10px; }
+        .hero-btn:hover { background-color: var(--secondary-color); transform: translateY(-3px); }
+
+        /* Quick Links (Blurb Style) */
+        .quick-links-section {
+            max-width: 1200px;
+            margin: -60px auto 60px; /* ดึงขึ้นไปทับ Hero Section เล็กน้อย สร้างมิติ */
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        .quick-links-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+        }
+        .ql-card {
+            background: white; padding: 30px 20px; border-radius: var(--border-radius); box-shadow: var(--soft-shadow); text-align: center; transition: all 0.3s ease;
+        }
+        .ql-card:hover { transform: translateY(-10px); box-shadow: var(--hover-shadow); border-bottom: 4px solid var(--secondary-color); }
+        .ql-icon { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; }
+        .ql-title { color: var(--primary-color); font-weight: 600; font-size: 1.1rem; }
+
+        /* Section Title */
+        .section-header { text-align: center; margin: 80px 0 40px; }
+        .section-header h2 { color: var(--primary-color); font-size: 2rem; }
+        .section-header p { color: #666; margin-top: 5px; }
+
+        /* Latest News (ดึงเลย์เอาต์จาก Template 4 มาย่อส่วน) */
+        .news-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card { background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--soft-shadow); transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .news-card:hover { transform: translateY(-8px); box-shadow: var(--hover-shadow); }
+        .news-img { width: 100%; height: 220px; object-fit: cover; }
+        .news-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .news-date { color: #888; font-size: 0.85rem; margin-bottom: 10px; }
+        .news-title { color: var(--primary-color); font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; }
+        .news-more { margin-top: auto; color: var(--primary-color); font-weight: 500; font-size: 0.95rem; border-bottom: 2px solid var(--secondary-color); align-self: flex-start; }
+
+        .btn-center { display: flex; justify-content: center; margin-top: 40px; }
+        .btn-outline { border: 2px solid var(--primary-color); color: var(--primary-color); padding: 10px 30px; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-outline:hover { background: var(--primary-color); color: white; }
+
+        /* Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 60px 5% 30px; margin-top: 80px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h4 { color: var(--secondary-color); margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #ddd; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: var(--secondary-color); }
+        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #aaa; font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .quick-links-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .main-menu { display: none; }
+        }
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .news-grid { grid-template-columns: 1fr; }
+            .quick-links-section { margin-top: -30px; }
+        }
+        @media (max-width: 480px) {
+            .quick-links-grid, .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <ul class="main-menu">
+            <li><a href="#" style="color: var(--secondary-color);">หน้าแรก</a></li>
+            <li><a href="#">ข้อมูลโรงเรียน ▼</a></li>
+            <li><a href="#">หลักสูตร ▼</a></li>
+            <li><a href="#">บุคลากร</a></li>
+            <li><a href="#">ข่าวสาร/ผลงาน</a></li>
+        </ul>
+        <a href="#" class="btn-portal">Portals เข้าสู่ระบบ</a>
+    </header>
+
+    <!-- Hero Section (Fullwidth Banner) -->
+    <section class="hero-home">
+        <div class="hero-content">
+            <h1>Saraburiwittayakhom</h1>
+            <p>มุ่งมั่นพัฒนาผู้เรียนสู่มาตรฐานสากล เปี่ยมด้วยคุณธรรมและความรู้คู่เทคโนโลยี พร้อมสภาพแวดล้อมที่ส่งเสริมความเป็นเลิศทางวิชาการ (World Class Standard)</p>
+            <a href="#" class="hero-btn">สมัครเรียน</a>
+            <a href="#" class="hero-btn" style="background: transparent; border: 2px solid white; color: white;">หลักสูตรของเรา</a>
+        </div>
+    </section>
+
+    <!-- Quick Links (Overlap Section) -->
+    <section class="quick-links-section">
+        <div class="quick-links-grid">
+            <a href="#" class="ql-card">
+                <span class="ql-icon">📢</span>
+                <div class="ql-title">ประกาศผลสอบ</div>
+            </a>
+            <a href="#" class="ql-card">
+                <span class="ql-icon">📅</span>
+                <div class="ql-title">ปฏิทินวิชาการ</div>
+            </a>
+            <a href="#" class="ql-card">
+                <span class="ql-icon">🏆</span>
+                <div class="ql-title">ผลงานนักเรียน</div>
+            </a>
+            <a href="#" class="ql-card">
+                <span class="ql-icon">🏫</span>
+                <div class="ql-title">The AI Forge</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Latest News -->
+    <section class="news-container">
+        <div class="section-header">
+            <h2>ข่าวสารล่าสุด</h2>
+            <p>อัปเดตกิจกรรม ประกาศ และผลงานความสำเร็จของชาวสระบุรีวิทยาคม</p>
+        </div>
+        
+        <div class="news-grid">
+            <!-- News 1 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/600x400?text=News+1" class="news-img" alt="ข่าว 1">
+                <div class="news-content">
+                    <div class="news-date">📅 15 พฤษภาคม 2569</div>
+                    <h3 class="news-title">เปิดตัวแพลตฟอร์มการเรียนรู้ "The AI Forge" ยกระดับทักษะการเขียนโปรแกรม</h3>
+                    <a href="#" class="news-more">อ่านต่อ →</a>
+                </div>
+            </article>
+
+            <!-- News 2 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/600x400?text=News+2" class="news-img" alt="ข่าว 2">
+                <div class="news-content">
+                    <div class="news-date">📅 12 พฤษภาคม 2569</div>
+                    <h3 class="news-title">ร่วมส่งแรงเชียร์ทีมนักเรียนในการแข่งขัน TPA Robot ระดับประเทศ</h3>
+                    <a href="#" class="news-more">อ่านต่อ →</a>
+                </div>
+            </article>
+
+            <!-- News 3 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/600x400?text=News+3" class="news-img" alt="ข่าว 3">
+                <div class="news-content">
+                    <div class="news-date">📅 5 พฤษภาคม 2569</div>
+                    <h3 class="news-title">ประกาศรายชื่อผู้มีสิทธิ์สอบคัดเลือกเข้าศึกษาต่อ ระดับชั้น ม.1 และ ม.4</h3>
+                    <a href="#" class="news-more">อ่านต่อ →</a>
+                </div>
+            </article>
+        </div>
+        
+        <div class="btn-center">
+            <a href="#" class="btn-outline">ดูข่าวสารทั้งหมด</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>โรงเรียนสระบุรีวิทยาคม</h4>
+                <p style="color: #ddd; font-size: 0.9rem;">มุ่งมั่นพัฒนาผู้เรียนสู่มาตรฐานสากล เปี่ยมด้วยคุณธรรมและความรู้คู่เทคโนโลยี</p>
+            </div>
+            <div class="footer-col">
+                <h4>เมนูลัด</h4>
+                <ul>
+                    <li><a href="#">สมัครเรียน</a></li>
+                    <li><a href="#">ระบบตรวจสอบผลการเรียน</a></li>
+                    <li><a href="#">ดาวน์โหลดเอกสาร</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ติดต่อเรา</h4>
+                <ul>
+                    <li style="color: #ddd;">ถนนพหลโยธิน ตำบลปากเพรียว</li>
+                    <li style="color: #ddd;">อำเภอเมือง จังหวัดสระบุรี 18000</li>
+                    <li style="color: #ddd;">โทร: 036-xxx-xxx</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ระบบสารสนเทศ (Portals)</h4>
+                <ul>
+                    <li><a href="#">สำหรับนักเรียน (Student Portal)</a></li>
+                    <li><a href="#">สำหรับครู (Teacher Portal)</a></li>
+                    <li><a href="#">สำหรับผู้ปกครอง (Parent Portal)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 โรงเรียนสระบุรีวิทยาคม (Saraburiwittayakhom School). All Rights Reserved. | พัฒนาด้วย WordPress & Divi Theme
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หลักสูตรและวิชาการ | โรงเรียนสระบุรีวิทยาคม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Settings */
+        :root {
+            --primary-color: #123880;
+            --secondary-color: #FFC20E;
+            --bg-color: #F5F7FA;
+            --border-radius: 12px;
+            --soft-shadow: 0 8px 24px rgba(18, 56, 128, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* Global Header (ย่อส่วนเพื่อความกะทัดรัด) */
+        .global-header {
+            background-color: #ffffff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+        .logo-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; }
+        .btn-portal { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 24px; border-radius: 25px; font-weight: 600; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4); }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(18, 56, 128, 0.95), rgba(18, 56, 128, 0.95)), url('https://via.placeholder.com/1920x400');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-section h1 { color: var(--secondary-color); font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* Template 2: 1/1 Row (Fullwidth Containers) */
+        .section-white { background-color: #ffffff; padding: 60px 20px; }
+        .section-gray { background-color: var(--bg-color); padding: 60px 20px; }
+        
+        .container-full {
+            max-width: 1000px; /* จำกัดความกว้างไม่ให้เนื้อหาบรรทัดยาวเกินไปแม้อยู่ใน 1/1 Row */
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+        }
+
+        /* Divi Accordion Module (จำลอง) */
+        .accordion-item {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #eaeaea;
+        }
+        .accordion-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        /* สไตล์เมื่อนำเมาส์ชี้ หรือเมื่อคลิกเปิด (เปลี่ยนสี) */
+        .accordion-header:hover {
+            background-color: #f8fbff;
+        }
+        .accordion-header.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .accordion-content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: #444;
+            background-color: #ffffff;
+        }
+        .accordion-content p {
+            margin-bottom: 15px;
+        }
+        .accordion-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* ไอคอนเปิด/ปิด (+ / -) */
+        .icon-toggle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+        .accordion-header.active .icon-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Tables ใน Accordion */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: var(--bg-color); color: var(--primary-color); }
+
+        /* Global Footer */
+        .global-footer { background-color: var(--primary-color); color: white; padding: 40px 5% 20px; text-align: center; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="global-header">
+        <div class="logo">
+            <span class="logo-icon">ส.บ.</span> สระบุรีวิทยาคม
+        </div>
+        <a href="#" class="btn-portal">เข้าสู่ระบบ (Portals)</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>โครงสร้างหลักสูตรและวิชาการ</h1>
+        <p>Curriculum & Academic Structure</p>
+    </section>
+
+    <!-- พื้นหลังสีขาว (สลับ Row 1) -->
+    <section class="section-white">
+        <div class="container-full">
+            <h2 class="section-title">หลักสูตรมัธยมศึกษาตอนต้น</h2>
+            
+            <!-- Accordion 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>แผนการเรียนวิทยาศาสตร์ - คณิตศาสตร์ (พิเศษ)</span>
+                    <span class="icon-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <br>
+                    <p>มุ่งเน้นการปูพื้นฐานทางวิทยาศาสตร์และคณิตศาสตร์อย่างเข้มข้น เพื่อเตรียมความพร้อมสำหรับการศึกษาต่อในระดับมัธยมศึกษาตอนปลายที่เน้นสายวิชาการ</p>
+                    <ul>
+                        <li>คณิตศาสตร์เพิ่มเติม (การแก้ปัญหาเชิงตรรกะ)</li>
+                        <li>วิทยาศาสตร์ประยุกต์และโครงงาน</li>
+                        <li>ภาษาอังกฤษเพื่อการสื่อสารเชิงวิชาการ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Accordion 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>แผนการเรียนวิทยาการคำนวณและหุ่นยนต์ (Robotics & AI)</span>
+                    <span class="icon-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <br>
+                    <p>ส่งเสริมทักษะในศตวรรษที่ 21 ผ่านการเรียนรู้ระบบอัตโนมัติ การเขียนโปรแกรมเบื้องต้น และการสร้างสรรค์นวัตกรรมผ่านโครงงานหุ่นยนต์ (เตรียมความพร้อมสู่การแข่งขัน TPA Robot ระดับประเทศ)</p>
+                    <ul>
+                        <li>พื้นฐานการออกแบบและเทคโนโลยี</li>
+                        <li>การประกอบและเขียนโปรแกรมควบคุมหุ่นยนต์ (Robo Rescue / Robo Soccer)</li>
+                        <li>ตรรกศาสตร์และการแก้ปัญหาเชิงคำนวณ (Computational Thinking)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- พื้นหลังสีเทาฟ้าอ่อน (สลับ Row 2) -->
+    <section class="section-gray">
+        <div class="container-full">
+            <h2 class="section-title">หลักสูตรมัธยมศึกษาตอนปลาย</h2>
+            
+            <!-- Accordion 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>กลุ่มวิชาเพิ่มเติม: วิทยาการคำนวณและเทคโนโลยีปัญญาประดิษฐ์</span>
+                    <span class="icon-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <br>
+                    <p>เตรียมความพร้อมผู้เรียนสู่สายอาชีพด้านเทคโนโลยี ด้วยสภาพแวดล้อมการเรียนรู้แบบออนไลน์ (เช่น The AI Forge) เพื่อฝึกทักษะการเขียนโปรแกรมและการเทรนโมเดล AI เบื้องต้น</p>
+                    <table>
+                        <tr>
+                            <th>รหัสวิชา</th>
+                            <th>ชื่อวิชา</th>
+                            <th>หน่วยกิต</th>
+                        </tr>
+                        <tr>
+                            <td>ว30281</td>
+                            <td>การพัฒนาแอปพลิเคชันด้วย Python และ Vue.js</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>ว30282</td>
+                            <td>โครงงานปัญญาประดิษฐ์ (AI Project)</td>
+                            <td>1.5</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Accordion 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>กลุ่มวิชาเพิ่มเติม: ระบบสารสนเทศเพื่อการลงทุน (สำหรับนักเรียน ม.6)</span>
+                    <span class="icon-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <br>
+                    <p>หลักสูตร 40 ชั่วโมงที่ออกแบบมาเพื่อบูรณาการความรู้ทางคณิตศาสตร์ สถิติ และวิทยาการคอมพิวเตอร์เข้ากับความรู้ทางการเงิน (Financial Literacy)</p>
+                    <ul>
+                        <li>การวิเคราะห์ข้อมูลทางสถิติและการทำ Backtest เบื้องต้น</li>
+                        <li>การพัฒนาระบบเทรดอัตโนมัติ (Trading Bot) ด้วยภาษา Python</li>
+                        <li>การเชื่อมต่อ API ของระบบสารสนเทศข้อมูลการลงทุน</li>
+                        <li>ความเสี่ยงทางการเงินและวินัยการลงทุน</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="global-footer">
+        &copy; 2026 โรงเรียนสระบุรีวิทยาคม. พัฒนาด้วย Divi Theme
+    </footer>
+
+    <!-- Script สำหรับควบคุมการทำงานของ Accordion (จำลองกลไกของ Divi) -->
+    <script>
+        function toggleAccordion(element) {
+            // ปิดเนื้อหาอันอื่นที่กำลังเปิดอยู่ (เพื่อให้เปิดได้ทีละ 1 อัน เหมือนแท็บ)
+            const allHeaders = document.querySelectorAll('.accordion-header');
+            allHeaders.forEach(header => {
+                if (header !== element && header.classList.contains('active')) {
+                    header.classList.remove('active');
+                    header.nextElementSibling.style.padding = '0 25px';
+                    header.nextElementSibling.style.maxHeight = '0';
+                }
+            });
+
+            // เปิด/ปิด เนื้อหาที่คลิก
+            element.classList.toggle('active');
+            const content = element.nextElementSibling;
+            
+            if (element.classList.contains('active')) {
+                content.style.padding = '20px 25px';
+                content.style.maxHeight = content.scrollHeight + 40 + 'px'; // +40 สำหรับ padding
+            } else {
+                content.style.padding = '0 25px';
+                content.style.maxHeight = '0';
+            }
+        }
+    </script>
+</body>
+</html>
