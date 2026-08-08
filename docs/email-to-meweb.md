@@ -14,8 +14,8 @@
 **ลิงก์สำคัญ**
 
 ```text
-1) Demo ออนไลน์ (Vercel):  <ใส่ URL หลัง deploy>
-2) ซอร์ส GitHub:           <ใส่ URL หลัง push>
+1) Demo ออนไลน์ (Vercel):  https://sbw-demo-ten.vercel.app/
+2) ซอร์ส GitHub:           https://github.com/saengpech-sys/sbw-demo
 ```
 
 **ลำดับอ่านเอกสาร (สำคัญ)**

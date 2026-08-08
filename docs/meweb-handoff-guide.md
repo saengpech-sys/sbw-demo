@@ -3,6 +3,9 @@
 เอกสารนี้อธิบายวิธีแปลง HTML Demo เป็น WordPress + Divi ให้ตรงสัญญา  
 อ่านคู่กับ Demo ออนไลน์และ [`sitemap-70.md`](sitemap-70.md)
 
+- **Demo:** https://sbw-demo-ten.vercel.app/  
+- **GitHub:** https://github.com/saengpech-sys/sbw-demo
+
 ---
 
 ## 1. HTML Demo คืออะไร (และไม่ใช่อะไร)

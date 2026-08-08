@@ -271,9 +271,9 @@ s.khumpo@sbw.ac.th
   10-email-to-meweb.md
 ```
 
-**Demo / ซอร์ส (ใส่ URL จริงหลัง deploy)**  
-- Demo (Vercel): _TBD_  
-- GitHub: _TBD_
+**Demo / ซอร์ส**  
+- Demo (Vercel): https://sbw-demo-ten.vercel.app/  
+- GitHub: https://github.com/saengpech-sys/sbw-demo
 
 ### Checklist ก่อนส่ง
 
@@ -285,6 +285,6 @@ s.khumpo@sbw.ac.th
 - [x] เว็บอ้างอิงดีไซน์ (MWIT)  
 - [x] HTML Demo ~70 หน้า + โลโก้  
 - [x] sitemap-70 + handoff guide  
-- [ ] Demo URL บน Vercel  
+- [x] Demo URL บน Vercel  
 - [ ] รูปภาพจริงความละเอียดสูง (ถ้ามีเพิ่ม ส่งใน `04-images/` หรือ Google Drive)  
 - [ ] แปลง brief เป็น PDF (ถ้า Meweb ต้องการไฟล์ PDF โดยเฉพาะ)

@@ -10,8 +10,8 @@
 
 | ช่องทาง | URL |
 |---------|-----|
-| **Demo ออนไลน์ (Vercel)** | _จะใส่หลัง deploy — ดู README / อีเมล_ |
-| **ซอร์สโค้ด (GitHub)** | _จะใส่หลัง push — ดู README / อีเมล_ |
+| **Demo ออนไลน์ (Vercel)** | https://sbw-demo-ten.vercel.app/ |
+| **ซอร์สโค้ด (GitHub)** | https://github.com/saengpech-sys/sbw-demo |
 | เปิดในเครื่อง | เปิด `index.html` ที่รากโปรเจกต์ |
 
 > อย่าเปิดโฟลเดอร์ `demo/` เป็นไซต์หลัก — `demo/` คือคลังแม่พิมพ์สำหรับทีมออกแบบ  

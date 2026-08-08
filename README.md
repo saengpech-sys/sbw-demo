@@ -4,8 +4,9 @@
 
 ## เปิดดู Demo
 
-1. **ออนไลน์ (Vercel):** _ใส่ URL หลัง deploy_  
-2. **ซอร์ส (GitHub):** _ใส่ URL หลัง push_  
+1. **ออนไลน์ (Vercel):** https://sbw-demo-ten.vercel.app/  
+2. **ซอร์ส (GitHub):** https://github.com/saengpech-sys/sbw-demo  
+
 3. ในเครื่อง: เปิด [`index.html`](index.html)
 
 ## Meweb อ่านเอกสารตามลำดับนี้
